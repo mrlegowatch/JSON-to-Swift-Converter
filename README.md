@@ -54,6 +54,13 @@ Into the following Swift implementation:
 ```
 
 ## Usage
-In Xcode, choose `Editor > Convert JSON to Swift > Convert`. 
+In Xcode, choose `Editor` > `Convert JSON to Swift` > `Convert`. 
 
+## Settings
 
+In Xcode, choosing `Editor` > `Convert JSON to Swift` > `Settings...` opens the host application where settings can be changed. Settings include:
+
+- `declaration`: specify `let` or `var` for property declarations (default is `let`)
+- `typeUnwrapping`: options include `explicit`, `optional` ("?"), or `required` ("!") (default is `required`)
+- `addKeys`: whether to add key declarations in a `Key` struct (default is true)
+- `addDefaultValue`: whether to add default values, e.g., "= 0" (default is false)
