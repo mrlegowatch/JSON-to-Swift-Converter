@@ -1,0 +1,770 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B63AA9FC1E61AB020032CB12 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B63AA9FB1E61AB020032CB12 /* Credits.rtf */; };
+		B63AA9FE1E61B0880032CB12 /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AA9FD1E61B0880032CB12 /* AppSettingsTests.swift */; };
+		B63AAA001E61B0990032CB12 /* LineIndentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AA9FF1E61B0990032CB12 /* LineIndentTests.swift */; };
+		B63AAA021E61B0B30032CB12 /* SwiftTypeNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA011E61B0B30032CB12 /* SwiftTypeNameTests.swift */; };
+		B63AAA041E61B0D50032CB12 /* JSONPropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA031E61B0D50032CB12 /* JSONPropertyTests.swift */; };
+		B63AAA0B1E61C4D90032CB12 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA071E61C4D90032CB12 /* AppSettings.swift */; };
+		B63AAA0C1E61C4D90032CB12 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA071E61C4D90032CB12 /* AppSettings.swift */; };
+		B63AAA0D1E61C4D90032CB12 /* JSONProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA081E61C4D90032CB12 /* JSONProperty.swift */; };
+		B63AAA0E1E61C4D90032CB12 /* JSONProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA081E61C4D90032CB12 /* JSONProperty.swift */; };
+		B63AAA0F1E61C4D90032CB12 /* LineIndent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA091E61C4D90032CB12 /* LineIndent.swift */; };
+		B63AAA101E61C4D90032CB12 /* LineIndent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA091E61C4D90032CB12 /* LineIndent.swift */; };
+		B63AAA111E61C4D90032CB12 /* SwiftTypeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA0A1E61C4D90032CB12 /* SwiftTypeName.swift */; };
+		B63AAA121E61C4D90032CB12 /* SwiftTypeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA0A1E61C4D90032CB12 /* SwiftTypeName.swift */; };
+		B63AAA131E61CA910032CB12 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA071E61C4D90032CB12 /* AppSettings.swift */; };
+		B63AAA141E61CE650032CB12 /* LineIndent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA091E61C4D90032CB12 /* LineIndent.swift */; };
+		B6ABCE631E61D2550031F2A5 /* SwiftTypeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA0A1E61C4D90032CB12 /* SwiftTypeName.swift */; };
+		B6ABCE641E61D4640031F2A5 /* JSONProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA081E61C4D90032CB12 /* JSONProperty.swift */; };
+		B6D9D68D1E621079001DC63D /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63AAA071E61C4D90032CB12 /* AppSettings.swift */; };
+		B6EFCB431E5B443600966E1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFCB421E5B443600966E1D /* AppDelegate.swift */; };
+		B6EFCB451E5B443600966E1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFCB441E5B443600966E1D /* ViewController.swift */; };
+		B6EFCB471E5B443600966E1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6EFCB461E5B443600966E1D /* Assets.xcassets */; };
+		B6EFCB4A1E5B443600966E1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6EFCB481E5B443600966E1D /* Main.storyboard */; };
+		B6EFCB601E5B443600966E1D /* JSONtoSwiftConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFCB5F1E5B443600966E1D /* JSONtoSwiftConverterUITests.swift */; };
+		B6EFCB741E5B444000966E1D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EFCB731E5B444000966E1D /* Cocoa.framework */; };
+		B6EFCB791E5B444000966E1D /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFCB781E5B444000966E1D /* SourceEditorExtension.swift */; };
+		B6EFCB7B1E5B444000966E1D /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFCB7A1E5B444000966E1D /* SourceEditorCommand.swift */; };
+		B6EFCB7F1E5B444000966E1D /* Convert JSON to Swift.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B6EFCB711E5B444000966E1D /* Convert JSON to Swift.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B6EFCB511E5B443600966E1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6EFCB371E5B443600966E1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6EFCB3E1E5B443600966E1D;
+			remoteInfo = "JSON to Swift Converter";
+		};
+		B6EFCB5C1E5B443600966E1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6EFCB371E5B443600966E1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6EFCB3E1E5B443600966E1D;
+			remoteInfo = "JSON to Swift Converter";
+		};
+		B6EFCB7D1E5B444000966E1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6EFCB371E5B443600966E1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6EFCB701E5B444000966E1D;
+			remoteInfo = "Convert JSON to Swift";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B6EFCB831E5B444000966E1D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B6EFCB7F1E5B444000966E1D /* Convert JSON to Swift.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B63AA9FB1E61AB020032CB12 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		B63AA9FD1E61B0880032CB12 /* AppSettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettingsTests.swift; sourceTree = "<group>"; };
+		B63AA9FF1E61B0990032CB12 /* LineIndentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineIndentTests.swift; sourceTree = "<group>"; };
+		B63AAA011E61B0B30032CB12 /* SwiftTypeNameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTypeNameTests.swift; sourceTree = "<group>"; };
+		B63AAA031E61B0D50032CB12 /* JSONPropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONPropertyTests.swift; sourceTree = "<group>"; };
+		B63AAA071E61C4D90032CB12 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		B63AAA081E61C4D90032CB12 /* JSONProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONProperty.swift; sourceTree = "<group>"; };
+		B63AAA091E61C4D90032CB12 /* LineIndent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineIndent.swift; sourceTree = "<group>"; };
+		B63AAA0A1E61C4D90032CB12 /* SwiftTypeName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTypeName.swift; sourceTree = "<group>"; };
+		B6D4C6A41E5E47EE005E1E40 /* JSON to Swift Converter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JSON to Swift Converter.entitlements"; sourceTree = "<group>"; };
+		B6EFCB3F1E5B443600966E1D /* JSON to Swift Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JSON to Swift Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6EFCB421E5B443600966E1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B6EFCB441E5B443600966E1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B6EFCB461E5B443600966E1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B6EFCB491E5B443600966E1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B6EFCB4B1E5B443600966E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6EFCB501E5B443600966E1D /* JSON to Swift ConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JSON to Swift ConverterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6EFCB561E5B443600966E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6EFCB5B1E5B443600966E1D /* JSON to Swift ConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JSON to Swift ConverterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6EFCB5F1E5B443600966E1D /* JSONtoSwiftConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONtoSwiftConverterUITests.swift; sourceTree = "<group>"; };
+		B6EFCB611E5B443600966E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6EFCB711E5B444000966E1D /* Convert JSON to Swift.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Convert JSON to Swift.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6EFCB731E5B444000966E1D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B6EFCB771E5B444000966E1D /* Convert_JSON_to_Swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Convert_JSON_to_Swift.entitlements; sourceTree = "<group>"; };
+		B6EFCB781E5B444000966E1D /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
+		B6EFCB7A1E5B444000966E1D /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
+		B6EFCB7C1E5B444000966E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6EFCB3C1E5B443600966E1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB4D1E5B443600966E1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB581E5B443600966E1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB6E1E5B444000966E1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6EFCB741E5B444000966E1D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B63AAA061E61C4130032CB12 /* SharedSources */ = {
+			isa = PBXGroup;
+			children = (
+				B63AAA071E61C4D90032CB12 /* AppSettings.swift */,
+				B63AAA081E61C4D90032CB12 /* JSONProperty.swift */,
+				B63AAA091E61C4D90032CB12 /* LineIndent.swift */,
+				B63AAA0A1E61C4D90032CB12 /* SwiftTypeName.swift */,
+			);
+			path = SharedSources;
+			sourceTree = "<group>";
+		};
+		B6EFCB361E5B443600966E1D = {
+			isa = PBXGroup;
+			children = (
+				B63AAA061E61C4130032CB12 /* SharedSources */,
+				B6EFCB411E5B443600966E1D /* JSON to Swift Converter */,
+				B6EFCB531E5B443600966E1D /* JSON to Swift ConverterTests */,
+				B6EFCB5E1E5B443600966E1D /* JSON to Swift ConverterUITests */,
+				B6EFCB751E5B444000966E1D /* Convert JSON to Swift */,
+				B6EFCB721E5B444000966E1D /* Frameworks */,
+				B6EFCB401E5B443600966E1D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6EFCB401E5B443600966E1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6EFCB3F1E5B443600966E1D /* JSON to Swift Converter.app */,
+				B6EFCB501E5B443600966E1D /* JSON to Swift ConverterTests.xctest */,
+				B6EFCB5B1E5B443600966E1D /* JSON to Swift ConverterUITests.xctest */,
+				B6EFCB711E5B444000966E1D /* Convert JSON to Swift.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6EFCB411E5B443600966E1D /* JSON to Swift Converter */ = {
+			isa = PBXGroup;
+			children = (
+				B6D4C6A41E5E47EE005E1E40 /* JSON to Swift Converter.entitlements */,
+				B6EFCB421E5B443600966E1D /* AppDelegate.swift */,
+				B6EFCB441E5B443600966E1D /* ViewController.swift */,
+				B6EFCB461E5B443600966E1D /* Assets.xcassets */,
+				B6EFCB481E5B443600966E1D /* Main.storyboard */,
+				B6EFCB4B1E5B443600966E1D /* Info.plist */,
+				B63AA9FB1E61AB020032CB12 /* Credits.rtf */,
+			);
+			path = "JSON to Swift Converter";
+			sourceTree = "<group>";
+		};
+		B6EFCB531E5B443600966E1D /* JSON to Swift ConverterTests */ = {
+			isa = PBXGroup;
+			children = (
+				B63AA9FD1E61B0880032CB12 /* AppSettingsTests.swift */,
+				B63AAA031E61B0D50032CB12 /* JSONPropertyTests.swift */,
+				B63AA9FF1E61B0990032CB12 /* LineIndentTests.swift */,
+				B63AAA011E61B0B30032CB12 /* SwiftTypeNameTests.swift */,
+				B6EFCB561E5B443600966E1D /* Info.plist */,
+			);
+			path = "JSON to Swift ConverterTests";
+			sourceTree = "<group>";
+		};
+		B6EFCB5E1E5B443600966E1D /* JSON to Swift ConverterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B6EFCB5F1E5B443600966E1D /* JSONtoSwiftConverterUITests.swift */,
+				B6EFCB611E5B443600966E1D /* Info.plist */,
+			);
+			path = "JSON to Swift ConverterUITests";
+			sourceTree = "<group>";
+		};
+		B6EFCB721E5B444000966E1D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6EFCB731E5B444000966E1D /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6EFCB751E5B444000966E1D /* Convert JSON to Swift */ = {
+			isa = PBXGroup;
+			children = (
+				B6EFCB781E5B444000966E1D /* SourceEditorExtension.swift */,
+				B6EFCB7A1E5B444000966E1D /* SourceEditorCommand.swift */,
+				B6EFCB7C1E5B444000966E1D /* Info.plist */,
+				B6EFCB761E5B444000966E1D /* Supporting Files */,
+			);
+			path = "Convert JSON to Swift";
+			sourceTree = "<group>";
+		};
+		B6EFCB761E5B444000966E1D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B6EFCB771E5B444000966E1D /* Convert_JSON_to_Swift.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B6EFCB3E1E5B443600966E1D /* JSON to Swift Converter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6EFCB641E5B443600966E1D /* Build configuration list for PBXNativeTarget "JSON to Swift Converter" */;
+			buildPhases = (
+				B6EFCB3B1E5B443600966E1D /* Sources */,
+				B6EFCB3C1E5B443600966E1D /* Frameworks */,
+				B6EFCB3D1E5B443600966E1D /* Resources */,
+				B6EFCB831E5B444000966E1D /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6EFCB7E1E5B444000966E1D /* PBXTargetDependency */,
+			);
+			name = "JSON to Swift Converter";
+			productName = "JSON to Swift Converter";
+			productReference = B6EFCB3F1E5B443600966E1D /* JSON to Swift Converter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B6EFCB4F1E5B443600966E1D /* JSON to Swift ConverterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6EFCB671E5B443600966E1D /* Build configuration list for PBXNativeTarget "JSON to Swift ConverterTests" */;
+			buildPhases = (
+				B6EFCB4C1E5B443600966E1D /* Sources */,
+				B6EFCB4D1E5B443600966E1D /* Frameworks */,
+				B6EFCB4E1E5B443600966E1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6EFCB521E5B443600966E1D /* PBXTargetDependency */,
+			);
+			name = "JSON to Swift ConverterTests";
+			productName = "JSON to Swift ConverterTests";
+			productReference = B6EFCB501E5B443600966E1D /* JSON to Swift ConverterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B6EFCB5A1E5B443600966E1D /* JSON to Swift ConverterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6EFCB6A1E5B443600966E1D /* Build configuration list for PBXNativeTarget "JSON to Swift ConverterUITests" */;
+			buildPhases = (
+				B6EFCB571E5B443600966E1D /* Sources */,
+				B6EFCB581E5B443600966E1D /* Frameworks */,
+				B6EFCB591E5B443600966E1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6EFCB5D1E5B443600966E1D /* PBXTargetDependency */,
+			);
+			name = "JSON to Swift ConverterUITests";
+			productName = "JSON to Swift ConverterUITests";
+			productReference = B6EFCB5B1E5B443600966E1D /* JSON to Swift ConverterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B6EFCB701E5B444000966E1D /* Convert JSON to Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6EFCB801E5B444000966E1D /* Build configuration list for PBXNativeTarget "Convert JSON to Swift" */;
+			buildPhases = (
+				B6EFCB6D1E5B444000966E1D /* Sources */,
+				B6EFCB6E1E5B444000966E1D /* Frameworks */,
+				B6EFCB6F1E5B444000966E1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Convert JSON to Swift";
+			productName = "Convert JSON to Swift";
+			productReference = B6EFCB711E5B444000966E1D /* Convert JSON to Swift.appex */;
+			productType = "com.apple.product-type.xcode-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6EFCB371E5B443600966E1D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Brian Arnold";
+				TargetAttributes = {
+					B6EFCB3E1E5B443600966E1D = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = VHX6TEH729;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					B6EFCB4F1E5B443600966E1D = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = J69E69SP27;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B6EFCB3E1E5B443600966E1D;
+					};
+					B6EFCB5A1E5B443600966E1D = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = J69E69SP27;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B6EFCB3E1E5B443600966E1D;
+					};
+					B6EFCB701E5B444000966E1D = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = VHX6TEH729;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = B6EFCB3A1E5B443600966E1D /* Build configuration list for PBXProject "JSON to Swift Converter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B6EFCB361E5B443600966E1D;
+			productRefGroup = B6EFCB401E5B443600966E1D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6EFCB3E1E5B443600966E1D /* JSON to Swift Converter */,
+				B6EFCB4F1E5B443600966E1D /* JSON to Swift ConverterTests */,
+				B6EFCB5A1E5B443600966E1D /* JSON to Swift ConverterUITests */,
+				B6EFCB701E5B444000966E1D /* Convert JSON to Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6EFCB3D1E5B443600966E1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6EFCB471E5B443600966E1D /* Assets.xcassets in Resources */,
+				B63AA9FC1E61AB020032CB12 /* Credits.rtf in Resources */,
+				B6EFCB4A1E5B443600966E1D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB4E1E5B443600966E1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB591E5B443600966E1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB6F1E5B444000966E1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6EFCB3B1E5B443600966E1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63AAA0D1E61C4D90032CB12 /* JSONProperty.swift in Sources */,
+				B6EFCB451E5B443600966E1D /* ViewController.swift in Sources */,
+				B6EFCB431E5B443600966E1D /* AppDelegate.swift in Sources */,
+				B63AAA0F1E61C4D90032CB12 /* LineIndent.swift in Sources */,
+				B63AAA0B1E61C4D90032CB12 /* AppSettings.swift in Sources */,
+				B63AAA111E61C4D90032CB12 /* SwiftTypeName.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB4C1E5B443600966E1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63AAA041E61B0D50032CB12 /* JSONPropertyTests.swift in Sources */,
+				B63AA9FE1E61B0880032CB12 /* AppSettingsTests.swift in Sources */,
+				B6ABCE631E61D2550031F2A5 /* SwiftTypeName.swift in Sources */,
+				B63AAA001E61B0990032CB12 /* LineIndentTests.swift in Sources */,
+				B6ABCE641E61D4640031F2A5 /* JSONProperty.swift in Sources */,
+				B63AAA141E61CE650032CB12 /* LineIndent.swift in Sources */,
+				B63AAA131E61CA910032CB12 /* AppSettings.swift in Sources */,
+				B63AAA021E61B0B30032CB12 /* SwiftTypeNameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB571E5B443600966E1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6D9D68D1E621079001DC63D /* AppSettings.swift in Sources */,
+				B6EFCB601E5B443600966E1D /* JSONtoSwiftConverterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6EFCB6D1E5B444000966E1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63AAA0E1E61C4D90032CB12 /* JSONProperty.swift in Sources */,
+				B6EFCB791E5B444000966E1D /* SourceEditorExtension.swift in Sources */,
+				B6EFCB7B1E5B444000966E1D /* SourceEditorCommand.swift in Sources */,
+				B63AAA101E61C4D90032CB12 /* LineIndent.swift in Sources */,
+				B63AAA0C1E61C4D90032CB12 /* AppSettings.swift in Sources */,
+				B63AAA121E61C4D90032CB12 /* SwiftTypeName.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B6EFCB521E5B443600966E1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6EFCB3E1E5B443600966E1D /* JSON to Swift Converter */;
+			targetProxy = B6EFCB511E5B443600966E1D /* PBXContainerItemProxy */;
+		};
+		B6EFCB5D1E5B443600966E1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6EFCB3E1E5B443600966E1D /* JSON to Swift Converter */;
+			targetProxy = B6EFCB5C1E5B443600966E1D /* PBXContainerItemProxy */;
+		};
+		B6EFCB7E1E5B444000966E1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6EFCB701E5B444000966E1D /* Convert JSON to Swift */;
+			targetProxy = B6EFCB7D1E5B444000966E1D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B6EFCB481E5B443600966E1D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6EFCB491E5B443600966E1D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B6EFCB621E5B443600966E1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TeamIdentifierPrefix = "$(DEVELOPMENT_TEAM).";
+			};
+			name = Debug;
+		};
+		B6EFCB631E5B443600966E1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TeamIdentifierPrefix = "$(DEVELOPMENT_TEAM).";
+			};
+			name = Release;
+		};
+		B6EFCB651E5B443600966E1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JSON to Swift Converter/JSON to Swift Converter.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VHX6TEH729;
+				INFOPLIST_FILE = "JSON to Swift Converter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B6EFCB661E5B443600966E1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JSON to Swift Converter/JSON to Swift Converter.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VHX6TEH729;
+				INFOPLIST_FILE = "JSON to Swift Converter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B6EFCB681E5B443600966E1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = J69E69SP27;
+				INFOPLIST_FILE = "JSON to Swift ConverterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-ConverterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSON to Swift Converter.app/Contents/MacOS/JSON to Swift Converter";
+			};
+			name = Debug;
+		};
+		B6EFCB691E5B443600966E1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = J69E69SP27;
+				INFOPLIST_FILE = "JSON to Swift ConverterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-ConverterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSON to Swift Converter.app/Contents/MacOS/JSON to Swift Converter";
+			};
+			name = Release;
+		};
+		B6EFCB6B1E5B443600966E1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = J69E69SP27;
+				INFOPLIST_FILE = "JSON to Swift ConverterUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-ConverterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "JSON to Swift Converter";
+			};
+			name = Debug;
+		};
+		B6EFCB6C1E5B443600966E1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = J69E69SP27;
+				INFOPLIST_FILE = "JSON to Swift ConverterUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-ConverterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "JSON to Swift Converter";
+			};
+			name = Release;
+		};
+		B6EFCB811E5B444000966E1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Convert JSON to Swift/Convert_JSON_to_Swift.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VHX6TEH729;
+				INFOPLIST_FILE = "Convert JSON to Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter.Convert-JSON-to-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B6EFCB821E5B444000966E1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Convert JSON to Swift/Convert_JSON_to_Swift.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = VHX6TEH729;
+				INFOPLIST_FILE = "Convert JSON to Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter.Convert-JSON-to-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6EFCB3A1E5B443600966E1D /* Build configuration list for PBXProject "JSON to Swift Converter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6EFCB621E5B443600966E1D /* Debug */,
+				B6EFCB631E5B443600966E1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6EFCB641E5B443600966E1D /* Build configuration list for PBXNativeTarget "JSON to Swift Converter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6EFCB651E5B443600966E1D /* Debug */,
+				B6EFCB661E5B443600966E1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6EFCB671E5B443600966E1D /* Build configuration list for PBXNativeTarget "JSON to Swift ConverterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6EFCB681E5B443600966E1D /* Debug */,
+				B6EFCB691E5B443600966E1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6EFCB6A1E5B443600966E1D /* Build configuration list for PBXNativeTarget "JSON to Swift ConverterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6EFCB6B1E5B443600966E1D /* Debug */,
+				B6EFCB6C1E5B443600966E1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6EFCB801E5B444000966E1D /* Build configuration list for PBXNativeTarget "Convert JSON to Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6EFCB811E5B444000966E1D /* Debug */,
+				B6EFCB821E5B444000966E1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6EFCB371E5B443600966E1D /* Project object */;
+}
