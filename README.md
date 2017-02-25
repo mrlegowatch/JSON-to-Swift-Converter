@@ -1,5 +1,5 @@
 # JSON-to-Swift-Converter
-An Xcode 8 editor extension to convert JSON format to Swift code
+An Xcode 8 editor extension to convert JSON format to Swift code.
 
 ## Description
 This is a lightweight naïve implementation for converting JSON-formatted text into Swift code. The JSON-formatted text structure and types are interpreted, and code is generated.
@@ -58,7 +58,7 @@ In Xcode, choose `Editor` > `Convert JSON to Swift` > `Convert`.
 
 ## Settings
 
-In Xcode, choosing `Editor` > `Convert JSON to Swift` > `Settings...` opens the host application where settings can be changed. Settings include:
+In Xcode, choosing `Editor` > `Convert JSON to Swift` > `Settings...` opens the host application where settings that control the conversion can be changed. Settings include:
 
 - `declaration`: specify `let` or `var` for property declarations (default is `let`)
 - `typeUnwrapping`: options include `explicit`, `optional` ("?"), or `required` ("!") (default is `required`)
