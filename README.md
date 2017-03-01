@@ -64,3 +64,7 @@ In Xcode, choosing `Editor` > `Convert JSON to Swift` > `Settings...` opens the 
 - `typeUnwrapping`: options include `explicit`, `optional` ("?"), or `required` ("!") (default is `required`)
 - `addKeys`: whether to add key declarations in a `Key` struct (default is true)
 - `addDefaultValue`: whether to add default values, e.g., "= 0" (default is false)
+
+## Credits
+
+This extension is loosely based on <a href = "https://github.com/keepyounger/Json2Property">Json2Property</a>, which in turn is based on <a href ="https://github.com/EnjoySR/ESJsonFormat-Xcode">ESJsonFormat-Xcode</a>. This version is written entirely Swift, is expanded a bit, and has unit tests.
