@@ -321,7 +321,7 @@
 				TargetAttributes = {
 					B6EFCB3E1E5B443600966E1D = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = VHX6TEH729;
+						DevelopmentTeam = J69E69SP27;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -346,7 +346,7 @@
 					};
 					B6EFCB701E5B444000966E1D = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = VHX6TEH729;
+						DevelopmentTeam = J69E69SP27;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -594,7 +594,7 @@
 				CODE_SIGN_ENTITLEMENTS = "JSON to Swift Converter/JSON to Swift Converter.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = VHX6TEH729;
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "JSON to Swift Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter";
@@ -611,7 +611,7 @@
 				CODE_SIGN_ENTITLEMENTS = "JSON to Swift Converter/JSON to Swift Converter.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = VHX6TEH729;
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "JSON to Swift Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter";
@@ -688,7 +688,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Convert JSON to Swift/Convert_JSON_to_Swift.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = VHX6TEH729;
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "Convert JSON to Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -705,7 +705,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Convert JSON to Swift/Convert_JSON_to_Swift.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = VHX6TEH729;
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "Convert JSON to Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
