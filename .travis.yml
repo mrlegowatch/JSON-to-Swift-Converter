@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode8.2
+script:
+- set -o pipefail
+- travis_retry xcodebuild -workspace "JSON to Swift Converter.xcworkspace" -scheme "JSON to Swift Converter" build-for-testing test | xcpretty
