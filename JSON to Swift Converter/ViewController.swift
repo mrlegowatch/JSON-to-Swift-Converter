@@ -18,27 +18,33 @@ extension NSButton {
 
 extension String {
     
+    /// Returns an attributed string with the specified color.
     func attributed(with color: NSColor) -> NSAttributedString {
         let attributes: [String: Any] = [NSForegroundColorAttributeName: color]
         return NSMutableAttributedString(string: self, attributes: attributes)
     }
     
+    /// Returns an attributed string with the Swift "keyword" color.
     var attributedKeywordColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.72, green: 0.2, blue: 0.66, alpha: 1.0))
     }
     
+    /// Returns an attributed string with the Swift "type" color.
     var attributedTypeColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.44, green: 0.26, blue: 0.66, alpha: 1.0))
     }
     
+    /// Returns an attributed string with the Swift "string literal" color.
     var attributedStringColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.84, green: 0.19, blue: 0.14, alpha: 1.0))
     }
     
+    /// Returns an attributed string with the Swift "int literal" color.
     var attributedIntColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.16, green: 0.20, blue: 0.83, alpha: 1.0))
     }
     
+    /// Returns self as an attributed string, for contatenation with other attributed strings.
     var attributed: NSAttributedString {
         return NSAttributedString(string: self)
     }
@@ -130,6 +136,7 @@ class ViewController: NSViewController {
             outputString.append("\n".attributed)
         }
         
+        // Add the init method and dictionary variable.
         if appSettings.addInitAndDictionary {
             outputString.append("\n".attributed)
             outputString.append("init".attributedKeywordColor)
