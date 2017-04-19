@@ -26,7 +26,8 @@ public struct AppSettings {
         static let typeUnwrapping = "TypeUnwrapping"
         static let addDefaultValue = "AddDefaultValue"
         static let addKeys = "AddKeys"
-        static let addInitAndDictionary = "AddInitAndDictionary"
+        static let addInit = "AddInit"
+        static let addDictionary = "AddDictionary"
     }
     
     /// Initializes to user defaults settings. Defaults to the shared user defaults.
@@ -92,17 +93,28 @@ public struct AppSettings {
         }
     }
     
-    /// Accesses whether to add an init(from: Any?) and var dictionary: Any? { get }. 
-    public var addInitAndDictionary: Bool {
+    /// Accesses whether to add init(from: Any?).
+    public var addInit: Bool {
         get {
-            guard userDefaults.object(forKey: Key.addInitAndDictionary) != nil else { return false }
-            return userDefaults.bool(forKey: Key.addInitAndDictionary)
+            guard userDefaults.object(forKey: Key.addInit) != nil else { return false }
+            return userDefaults.bool(forKey: Key.addInit)
         }
         set {
-            userDefaults.set(newValue, forKey: Key.addInitAndDictionary)
+            userDefaults.set(newValue, forKey: Key.addInit)
         }
     }
-   
+
+    /// Accesses whether to add var dictionary: Any? { get }.
+    public var addDictionary: Bool {
+        get {
+            guard userDefaults.object(forKey: Key.addDictionary) != nil else { return false }
+            return userDefaults.bool(forKey: Key.addDictionary)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Key.addDictionary)
+        }
+    }
+
 }
 
 extension AppSettings.TypeUnwrapping: CustomStringConvertible {

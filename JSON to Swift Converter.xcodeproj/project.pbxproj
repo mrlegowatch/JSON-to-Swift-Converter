@@ -34,6 +34,8 @@
 		B6EFCB791E5B444000966E1D /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFCB781E5B444000966E1D /* SourceEditorExtension.swift */; };
 		B6EFCB7B1E5B444000966E1D /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFCB7A1E5B444000966E1D /* SourceEditorCommand.swift */; };
 		B6EFCB7F1E5B444000966E1D /* Convert JSON to Swift.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B6EFCB711E5B444000966E1D /* Convert JSON to Swift.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B6F9B1F41E99371E0045CD8D /* TestClasses.json in Resources */ = {isa = PBXBuildFile; fileRef = B6F9B1F31E99371E0045CD8D /* TestClasses.json */; };
+		B6F9B1F91E9948730045CD8D /* TestConverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9B1F51E9941FC0045CD8D /* TestConverted.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		B6EFCB781E5B444000966E1D /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
 		B6EFCB7A1E5B444000966E1D /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
 		B6EFCB7C1E5B444000966E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6F9B1F31E99371E0045CD8D /* TestClasses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestClasses.json; sourceTree = "<group>"; };
+		B6F9B1F51E9941FC0045CD8D /* TestConverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConverted.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,8 +195,10 @@
 			children = (
 				B63AA9FD1E61B0880032CB12 /* AppSettingsTests.swift */,
 				B63AAA031E61B0D50032CB12 /* JSONPropertyTests.swift */,
+				B6F9B1F51E9941FC0045CD8D /* TestConverted.swift */,
 				B63AA9FF1E61B0990032CB12 /* LineIndentTests.swift */,
 				B63AAA011E61B0B30032CB12 /* SwiftTypeNameTests.swift */,
+				B6F9B1F31E99371E0045CD8D /* TestClasses.json */,
 				B6EFCB561E5B443600966E1D /* Info.plist */,
 			);
 			path = "JSON to Swift ConverterTests";
@@ -321,6 +327,7 @@
 				TargetAttributes = {
 					B6EFCB3E1E5B443600966E1D = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = J69E69SP27;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -345,6 +352,7 @@
 					};
 					B6EFCB701E5B444000966E1D = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = J69E69SP27;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -390,6 +398,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F9B1F41E99371E0045CD8D /* TestClasses.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F9B1F91E9948730045CD8D /* TestConverted.swift in Sources */,
 				B63AAA0D1E61C4D90032CB12 /* JSONProperty.swift in Sources */,
 				B6EFCB451E5B443600966E1D /* ViewController.swift in Sources */,
 				B6EFCB431E5B443600966E1D /* AppDelegate.swift in Sources */,
@@ -592,7 +602,7 @@
 				CODE_SIGN_ENTITLEMENTS = "JSON to Swift Converter/JSON to Swift Converter.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "JSON to Swift Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter";
@@ -609,7 +619,7 @@
 				CODE_SIGN_ENTITLEMENTS = "JSON to Swift Converter/JSON to Swift Converter.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "JSON to Swift Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flatearthstudio.JSON-to-Swift-Converter";
@@ -686,7 +696,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Convert JSON to Swift/Convert_JSON_to_Swift.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "Convert JSON to Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -703,7 +713,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Convert JSON to Swift/Convert_JSON_to_Swift.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J69E69SP27;
 				INFOPLIST_FILE = "Convert JSON to Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;

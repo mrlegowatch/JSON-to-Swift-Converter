@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -112,7 +112,7 @@
                     <window key="window" title="JSON to Swift Converter Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="570" width="640" height="360"/>
+                        <rect key="contentRect" x="196" y="570" width="650" height="360"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
@@ -128,18 +128,18 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="JSON_to_Swift_Converter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="360"/>
+                        <rect key="frame" x="0.0" y="0.0" width="650" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" title="Example JSON:" translatesAutoresizingMaskIntoConstraints="NO" id="Vel-hI-WCP">
-                                <rect key="frame" x="306" y="235" width="317" height="105"/>
+                                <rect key="frame" x="306" y="235" width="327" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="cGR-mO-8Ee">
-                                    <rect key="frame" x="2" y="2" width="313" height="88"/>
+                                    <rect key="frame" x="2" y="2" width="323" height="88"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bld-9D-4dc">
-                                            <rect key="frame" x="10" y="11" width="214" height="70"/>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bld-9D-4dc">
+                                            <rect key="frame" x="10" y="11" width="302" height="70"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="fDf-3U-P5i">
                                                 <font key="font" metaFont="fixedUser" size="11"/>
@@ -239,14 +239,14 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="NUE-eg-h2R">
-                                <rect key="frame" x="309" y="20" width="311" height="211"/>
+                                <rect key="frame" x="309" y="20" width="321" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" ambiguous="YES" id="FGf-et-2iD">
-                                    <rect key="frame" x="0.0" y="0.0" width="311" height="211"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="321" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxf-fb-jgn">
-                                            <rect key="frame" x="8" y="16" width="298" height="181"/>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxf-fb-jgn">
+                                            <rect key="frame" x="8" y="5" width="305" height="192"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="hkO-Cn-H1D" userLabel="outputStaticText">
                                                 <font key="font" metaFont="fixedUser" size="11"/>
@@ -263,7 +263,7 @@ let age: Int</string>
                                 <color key="fillColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzW-Eu-VeN">
-                                <rect key="frame" x="18" y="215" width="150" height="18"/>
+                                <rect key="frame" x="18" y="175" width="150" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Add Key declarations" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9J6-C7-ah3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -274,7 +274,7 @@ let age: Int</string>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-rE-gU1">
-                                <rect key="frame" x="18" y="189" width="135" height="18"/>
+                                <rect key="frame" x="18" y="206" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Add default values" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5AN-g4-Rmk">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -284,22 +284,34 @@ let age: Int</string>
                                     <action selector="changeDefaultValue:" target="XfG-lQ-9wD" id="xaK-tu-aLj"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e3c-Zm-L64">
-                                <rect key="frame" x="18" y="163" width="254" height="18"/>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e3c-Zm-L64">
+                                <rect key="frame" x="37" y="155" width="110" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Add init(from:) and var dictionary (get)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3OZ-bK-QH8">
+                                <buttonCell key="cell" type="check" title="Add init(from:)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3OZ-bK-QH8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="changeAddInitAndDictionary:" target="XfG-lQ-9wD" id="E8D-is-ETj"/>
+                                    <action selector="changeAddInit:" target="XfG-lQ-9wD" id="g0a-wI-Ryk"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mk9-Oq-f3l">
+                                <rect key="frame" x="37" y="135" width="166" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Add var dictionary {get}" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rQS-Sq-s0g">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="changeAddDictionary:" target="XfG-lQ-9wD" id="m88-gx-pmS"/>
                                 </connections>
                             </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="addDefaultValue" destination="Jab-rE-gU1" id="2C9-na-f8Z"/>
-                        <outlet property="addInitAndDictionary" destination="e3c-Zm-L64" id="Oy1-rp-JGA"/>
+                        <outlet property="addDictionary" destination="mk9-Oq-f3l" id="1FI-lc-RME"/>
+                        <outlet property="addInit" destination="e3c-Zm-L64" id="NbN-zY-bBy"/>
                         <outlet property="addKeys" destination="uzW-Eu-VeN" id="2iT-ro-J5R"/>
                         <outlet property="declarationLet" destination="IMU-O8-Zda" id="xpd-MN-PXA"/>
                         <outlet property="declarationVar" destination="XDu-AA-bQH" id="z5m-dn-Wkv"/>
