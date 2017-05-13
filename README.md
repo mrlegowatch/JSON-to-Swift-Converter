@@ -32,11 +32,11 @@ Into the following Swift implementation:
 
     struct Key {
 
-        let symbol = "symbol"
-        let longNamePlural = "long name plural"
-        let currency = "currency"
-        let longName = "long name"
-        let coefficient = "coefficient"
+        static let symbol = "symbol"
+        static let longNamePlural = "long name plural"
+        static let currency = "currency"
+        static let longName = "long name"
+        static let coefficient = "coefficient"
 
     }
 
@@ -54,7 +54,7 @@ Into the following Swift implementation:
 ```
 
 ## Usage
-In Xcode, choose `Editor` > `Convert JSON to Swift` > `Convert`. 
+In Xcode, choose `Editor` > `Convert JSON to Swift` > `Convert JSON to Swift`. 
 
 ## Settings
 
@@ -64,6 +64,7 @@ In Xcode, choosing `Editor` > `Convert JSON to Swift` > `Settings...` opens the 
 - `typeUnwrapping`: options include `explicit`, `optional` ("?"), or `required` ("!") (default is `required`)
 - `addKeys`: whether to add key declarations in a `Key` struct (default is true)
 - `addDefaultValue`: whether to add default values, e.g., "= 0" (default is false)
+- `addInitAndDictionary`: whether to add an init(from:) method and dictionary: variable accessor (default is false)
 
 ## Credits
 
