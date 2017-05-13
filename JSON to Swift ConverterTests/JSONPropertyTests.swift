@@ -23,7 +23,8 @@ class JSONPropertyTests: XCTestCase {
 
         appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addKeys)
         appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addDefaultValue)
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addInitAndDictionary)
+        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addInit)
+        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addDictionary)
     }
     
     func testNumberValueType() {
@@ -113,19 +114,19 @@ class JSONPropertyTests: XCTestCase {
 
         do {
             // NB, this is a white box test, allKeys shouldn't be called directly
-            let keys = property?.allKeys
+            let keys = property!.allKeys
             print("keys = \(keys)")
             
             // TODO: see comment in JSONProperty regarding [Any] children
             // the parsing via makeRootProperty misses the second array dictionary "weight" key
-            XCTAssertEqual(keys?.count, 6 /*7*/, "property should have 7 unique keys")
+            XCTAssertEqual(keys.count, 6 /*7*/, "property should have 7 unique keys")
             
             // Test propertyKeys output
             let propertyKeys = property?.propertyKeys(indent: indent)
             print("propertyKeys = \n\(propertyKeys ?? "")")
             
             XCTAssertTrue(propertyKeys?.hasPrefix("\nstruct Key {\n") ?? false, "prefix for property keys")
-            XCTAssertTrue(propertyKeys?.contains("    let ") ?? false, "declarations for property keys")
+            XCTAssertTrue(propertyKeys?.contains("    static let ") ?? false, "declarations for property keys")
             XCTAssertTrue(propertyKeys?.contains(" miscellaneousScores = ") ?? false, "a specific key declaration")
             XCTAssertTrue(propertyKeys?.contains("\"miscellaneous scores\"") ?? false, "a specific key value")
             XCTAssertTrue(propertyKeys?.hasSuffix("\n}\n") ?? false, "suffix for property keys")
@@ -173,8 +174,53 @@ class JSONPropertyTests: XCTestCase {
             XCTAssertTrue(propertyContent?.contains("var attributes: <#AttributesType#>? = [:]") ?? false, "a specific type declaration")
             XCTAssertTrue(propertyContent?.contains("var miscellaneousScores: [Int]? = []") ?? false, "a specific type declaration")
         }
+        
     }
 
+    func testAddInitAndDictionary() {
+        let string = "{ \"name\": \"Bilbo\", \"info\": [ { \"age\": 111 }, { \"weight\": 25.8 } ], \"attributes\": { \"strength\": 12 }, \"miscellaneous scores\": [2, 3] }"
+
+        let property = JSONProperty(from: string)
+        XCTAssertNotNil(property, "property should be non-nil")
+        
+        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        
+        // Note: we are going to mess with app settings shared instance, which affects state across unit test sessions.
+        var appSettings = AppSettings.sharedInstance
+        appSettings.addDefaultValue = true
+        appSettings.addKeys = true
+        appSettings.addInit = true
+        appSettings.addDictionary = true
+        
+        // var with optional will set default values in the declarations
+        do {
+            appSettings.declaration = .useVar
+            appSettings.typeUnwrapping = .optional
+            
+            let propertyContent = property?.propertyContent(indent: indent)
+            print("init with var and optional = \n\(propertyContent ?? "")")
+        }
+
+        // let with optional will set default values in the init method
+        do {
+            appSettings.declaration = .useLet
+            appSettings.typeUnwrapping = .optional
+            
+            let propertyContent = property?.propertyContent(indent: indent)
+            print("init with let and optional = \n\(propertyContent ?? "")")
+        }
+
+        // let with explicit will use guard
+        do {
+            appSettings.declaration = .useLet
+            appSettings.typeUnwrapping = .explicit
+            
+            let propertyContent = property?.propertyContent(indent: indent)
+            print("init with let and explicit = \n\(propertyContent ?? "")")
+        }
+
+    }
+    
     func testJSONArray() {
         let string = "[\"name\", \"age\"]"
         
@@ -186,15 +232,38 @@ class JSONPropertyTests: XCTestCase {
         do {
             let propertyContent = property?.propertyContent(indent: indent)
             print("propertyContent (array) = \n\(propertyContent ?? "")")
-
-            
         }
-        
     }
-    func testJSONPropertyPerformance() {
+    
+    func testJSONPropertyOutput() {
+        let testClassesFile = Bundle(for: JSONPropertyTests.self).url(forResource: "TestClasses", withExtension: "json")!
+        let testClasses = try! String(contentsOf: testClassesFile, encoding: .utf8)
+        let property = JSONProperty(from: testClasses)!
         
+        let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
+        
+        let propertyKeys = property.propertyKeys(indent: lineIndent)
+        print("propertyKeys = \n\(propertyKeys)")
+        
+        let typeContent = property.typeContent(indent: lineIndent)
+        print("typeContent = \n\(typeContent)")
+        
+        let propertyContent = property.propertyContent(indent: lineIndent)
+        print("propertyContent = \n\(propertyContent)")
+    }
+    
+    func testJSONPropertyPerformance() {
+        let testClassesFile = Bundle(for: JSONPropertyTests.self).url(forResource: "TestClasses", withExtension: "json")!
+        let testClasses = try! String(contentsOf: testClassesFile, encoding: .utf8)
+        let property = JSONProperty(from: testClasses)!
+
         self.measure {
+        
+            let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
             
+            let _ = property.propertyKeys(indent: lineIndent)
+            let _ = property.typeContent(indent: lineIndent)
+            let _ = property.propertyContent(indent: lineIndent)
         }
     }
 

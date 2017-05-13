@@ -18,27 +18,33 @@ extension NSButton {
 
 extension String {
     
+    /// Returns an attributed string with the specified color.
     func attributed(with color: NSColor) -> NSAttributedString {
         let attributes: [String: Any] = [NSForegroundColorAttributeName: color]
         return NSMutableAttributedString(string: self, attributes: attributes)
     }
     
+    /// Returns an attributed string with the Swift "keyword" color.
     var attributedKeywordColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.72, green: 0.2, blue: 0.66, alpha: 1.0))
     }
     
+    /// Returns an attributed string with the Swift "type" color.
     var attributedTypeColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.44, green: 0.26, blue: 0.66, alpha: 1.0))
     }
     
+    /// Returns an attributed string with the Swift "string literal" color.
     var attributedStringColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.84, green: 0.19, blue: 0.14, alpha: 1.0))
     }
     
+    /// Returns an attributed string with the Swift "int literal" color.
     var attributedIntColor: NSAttributedString {
         return self.attributed(with: NSColor(calibratedRed: 0.16, green: 0.20, blue: 0.83, alpha: 1.0))
     }
     
+    /// Returns self as an attributed string, for contatenation with other attributed strings.
     var attributed: NSAttributedString {
         return NSAttributedString(string: self)
     }
@@ -54,8 +60,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var typeRequired: NSButton!
     
     @IBOutlet weak var addDefaultValue: NSButton!
-    @IBOutlet weak var addInitAndDictionary: NSButton!
     @IBOutlet weak var addKeys: NSButton!
+    @IBOutlet weak var addInit: NSButton!
+    @IBOutlet weak var addDictionary: NSButton!
     
     @IBOutlet weak var version: NSTextField! {
         didSet {
@@ -86,12 +93,15 @@ class ViewController: NSViewController {
         typeRequired.state = typeUnwrapping == .required ? NSOnState : NSOffState
         
         addDefaultValue.state = appSettings.addDefaultValue ? NSOnState : NSOffState
-        addInitAndDictionary.state = appSettings.addInitAndDictionary ? NSOnState : NSOffState
         addKeys.state = appSettings.addKeys ? NSOnState : NSOffState
+        addInit.state = appSettings.addInit ? NSOnState : NSOffState
+        addDictionary.state = appSettings.addDictionary ? NSOnState : NSOffState
     }
     
     /// Update the output text view to reflect the current settings
     func updateOutput() {
+        addInit.isEnabled = addKeys.state == NSOnState
+        addDictionary.isEnabled = addKeys.state == NSOnState
         
         let declaration = appSettings.declaration == .useLet ? "let" : "var"
         let typeUnwrapping = appSettings.typeUnwrapping == .optional ? "?" : appSettings.typeUnwrapping == .required ? "!" : ""
@@ -107,7 +117,7 @@ class ViewController: NSViewController {
             outputString.append(" Key {\n".attributed)
             for item in outputData {
                 outputString.append("\(lineIndent)".attributed)
-                outputString.append("let".attributedKeywordColor)
+                outputString.append("static let".attributedKeywordColor)
                 outputString.append(" \(item[0].swiftName) = ".attributed)
                 outputString.append("\"\(item[0])\"".attributedStringColor)
                 outputString.append("\n".attributed)
@@ -130,18 +140,30 @@ class ViewController: NSViewController {
             outputString.append("\n".attributed)
         }
         
-        if appSettings.addInitAndDictionary {
-            outputString.append("\n".attributed)
-            outputString.append("init".attributedKeywordColor)
-            outputString.append("?(from dictionary: ".attributed)
-            outputString.append("Any".attributedKeywordColor)
-            outputString.append("?) { ... }\n".attributed)
-            outputString.append("var".attributedKeywordColor)
-            outputString.append(" dictionary: ".attributed)
-            outputString.append("Any".attributedKeywordColor)
-            outputString.append("? { ".attributed)
-            outputString.append("return".attributedKeywordColor)
-            outputString.append(" ... }".attributed)
+        outputString.append("\n".attributed)
+
+        if appSettings.addKeys {
+            // Add the init method.
+            if appSettings.addInit {
+                outputString.append("init".attributedKeywordColor)
+                outputString.append("?(from dictionary: [".attributed)
+                outputString.append("String".attributedKeywordColor)
+                outputString.append(": ".attributed)
+                outputString.append("Any".attributedKeywordColor)
+                outputString.append("]) { ... }\n".attributed)
+            }
+     
+            // Add the dictionary variable.
+            if appSettings.addDictionary {
+                outputString.append("var".attributedKeywordColor)
+                outputString.append(" dictionary: [".attributed)
+                outputString.append("String".attributedKeywordColor)
+                outputString.append(": ".attributed)
+                outputString.append("Any".attributedKeywordColor)
+                outputString.append("] { ".attributed)
+                outputString.append("return".attributedKeywordColor)
+                outputString.append(" ... }".attributed)
+            }
         }
         
         outputString.endEditing()
@@ -170,8 +192,13 @@ class ViewController: NSViewController {
         updateOutput()
     }
 
-    @IBAction func changeAddInitAndDictionary(_ sender: NSButton) {
-        appSettings.addInitAndDictionary = sender.isChecked
+    @IBAction func changeAddInit(_ sender: NSButton) {
+        appSettings.addInit = sender.isChecked
+        updateOutput()
+    }
+    
+    @IBAction func changeAddDictionary(_ sender: NSButton) {
+        appSettings.addDictionary = sender.isChecked
         updateOutput()
     }
     

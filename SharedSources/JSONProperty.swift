@@ -131,7 +131,7 @@ public struct JSONProperty {
         var resultStr = "\n\(indent)struct Key {\n\n"
         let keyIndent = indent.indented()
         for key in keys {
-            resultStr.append("\(keyIndent)let \(key.swiftName) = \"\(key)\"\n")
+            resultStr.append("\(keyIndent)static let \(key.swiftName) = \"\(key)\"\n")
         }
         resultStr.append("\n\(indent)}\n")
         
@@ -162,23 +162,100 @@ public struct JSONProperty {
         for (key, value) in self.dictionary {
             resultStr.append(String(format: "\(indent)%@\n", format(key, value: value)))
         }
+        resultStr.append(addInitContent(indent: indent));
+        resultStr.append(addDictionaryContent(indent: indent));
         resultStr.append("\n")
         
         return resultStr
     }
     
+    public func addInitContent(indent: LineIndent) -> String {
+        let appSettings = AppSettings.sharedInstance
+        guard appSettings.addKeys, appSettings.addInit else { return "" }
+        
+        var resultStr = ""
+        
+        let childIndent = indent.indented()
+        
+        // TODO: use only one guard and only call else return nil once, not for every let
+        // TODO: have an option to specify throws with an exception
+        
+        // Declare init(from dictionary: Any?) method
+        resultStr.append("\(indent)\n\(indent)init?(from dictionary: [String: Any]) {\n")
+
+        for (key, value) in self.dictionary {
+            resultStr.append(String(format: "\(childIndent)%@\n", initContent(key, value: value)))
+        }
+
+        // If the type unwrapping is not optional, initContent will have used guard and let,
+        // so now the properties need to be set from the let values.
+        let isTypeUnwrappingOptional = appSettings.typeUnwrapping == .optional
+        if !isTypeUnwrappingOptional {
+            resultStr.append("\(childIndent)\n")
+            for (key, value) in self.dictionary {
+                resultStr.append(String(format: "\(childIndent)%@\n", assignContent(key, value: value)))
+            }
+        }
+        resultStr.append("\(indent)}\n\(indent)\n")
+
+        return resultStr
+    }
+ 
+    public func addDictionaryContent(indent: LineIndent) -> String {
+        let appSettings = AppSettings.sharedInstance
+        guard appSettings.addKeys, appSettings.addDictionary else { return "" }
+        
+        var resultStr = ""
+        
+        let childIndent = indent.indented()
+        
+        // Declare dictionary: Any? var and getter
+        resultStr.append("\(indent)var dictionary: [String: Any] {\n")
+        resultStr.append("\(childIndent)var dictionary = [String: Any]()\n\(childIndent)\n")
+        for (key, value) in self.dictionary {
+            resultStr.append(String(format: "\(childIndent)%@\n", dictionaryContent(key, value: value)))
+        }
+        resultStr.append("\(childIndent)\n\(childIndent)return dictionary\n")
+        resultStr.append("\(indent)}\n")
+        
+        return resultStr
+    }
+
     /// Returns a Swift syntax string of this type followed by property content.
     internal func childTypeContent(indent: LineIndent) -> String {
         let childIndent = indent.indented()
         return "\(indent)struct \(self.name) {\n\(self.typeContent(indent: childIndent))\(self.propertyContent(indent: childIndent))\(indent)}"
     }
     
-    /// Returns a Swift syntax string of this property as a declaration with type and optional default value.
-    internal func format(_ key: String, value: Any) -> String {
+    internal func initContent(_ key: String, value: Any) -> String {
+        let swiftKey = key.swiftName
+        let (typeStr, defaultStr) = typeAndDefault(swiftKey, value)
         
+        let appSettings = AppSettings.sharedInstance
+        
+        // If the type unwrapping is required or explicit, use a guard.
+        // If the type unwrapping is optional, default values are being used, and declaration is let, add the default value to the assignment
+        let isTypeUnwrappingOptional = appSettings.typeUnwrapping == .optional
+        let isAddDefaultValue = appSettings.addDefaultValue
+        let isDeclarationUseLet = appSettings.declaration == .useLet
+        let guardPrefix = !isTypeUnwrappingOptional ? "guard let " : "self."
+        let guardSuffix = !isTypeUnwrappingOptional ? " else { return nil }" : isAddDefaultValue && isDeclarationUseLet ? " ?? \(defaultStr)" : ""
+        return "\(guardPrefix)\(swiftKey) = dictionary[Key.\(swiftKey)] as? \(typeStr)\(guardSuffix)"
+    }
+    
+    internal func assignContent(_ key: String, value: Any) -> String {
+        let swiftKey = key.swiftName
+        return "self.\(swiftKey) = \(swiftKey)"
+    }
+    
+    internal func dictionaryContent(_ key: String, value: Any) -> String {
+        let swiftKey = key.swiftName
+        return "dictionary[Key.\(swiftKey)] = \(swiftKey)"
+    }
+
+    internal func typeAndDefault(_ swiftKey: String, _ value: Any) -> (String, String) {
         var typeStr = "String"
         var defaultValue = "\"\""
-        let key = key.swiftName
         
         switch value {
         case let number as NSNumber:
@@ -189,7 +266,7 @@ public struct JSONProperty {
         case let array as [Any]:
             let genericTypeStr: String
             let firstObject = array.first
-            if firstObject is [String: Any], let childInfo = self.childArrays[key] {
+            if firstObject is [String: Any], let childInfo = self.childArrays[swiftKey] {
                 genericTypeStr = childInfo.name
             } else if firstObject is String {
                 genericTypeStr = "String"
@@ -202,7 +279,7 @@ public struct JSONProperty {
             typeStr = childInfo != nil ? "[\(childInfo!.name)]" : "[\(genericTypeStr)]"
             defaultValue = "[]"
         case _ as [String:Any]:
-            let childInfo = self.childDictionaries[key]
+            let childInfo = self.childDictionaries[swiftKey]
             // TODO: Not testing for nil case, is childInfo always non-nil?
             typeStr = childInfo?.name ?? "<#\(key.swiftType)Type#>"
             defaultValue = "[:]"
@@ -210,11 +287,19 @@ public struct JSONProperty {
             break
         }
         
+        return (typeStr, defaultValue)
+    }
+    
+    /// Returns a Swift syntax string of this property as a declaration with type and optional default value.
+    internal func format(_ key: String, value: Any) -> String {
+        let swiftKey = key.swiftName
+        let (typeStr, defaultValue) = typeAndDefault(swiftKey, value)
+        
         let appSettings = AppSettings.sharedInstance
         let declaration = appSettings.declaration == .useLet ? "let" : "var"
         let typeUnwrapping = "\(appSettings.typeUnwrapping)"
-        let defaultAssignment = appSettings.addDefaultValue ? " = \(defaultValue)" : ""
-        return "\(declaration) \(key): \(typeStr)\(typeUnwrapping)\(defaultAssignment)"
+        let defaultAssignment = appSettings.addDefaultValue && !(appSettings.addKeys && appSettings.addInit && appSettings.declaration == .useLet) ? " = \(defaultValue)" : ""
+        return "\(declaration) \(swiftKey): \(typeStr)\(typeUnwrapping)\(defaultAssignment)"
     }
 
 }

@@ -29,7 +29,6 @@ class LineIndentTests: XCTestCase {
             XCTAssertEqual(indent.indentPerLevel, "\t", "indent per level tabs width of 8")
             
             XCTAssertEqual("\(indent)", "\t\t", "indent string convertible tabs width of 8")
-
         }
         
         // spaces, width of 2
@@ -63,7 +62,6 @@ class LineIndentTests: XCTestCase {
             XCTAssertEqual(nextNextIndent.indentPerLevel, "    ", "next next indent's indent per level spaces width of 4")
             
             XCTAssertEqual("\(nextNextIndent)", "        ", "next next indent string convertible spaces width of 4")
-            
         }
     }
 

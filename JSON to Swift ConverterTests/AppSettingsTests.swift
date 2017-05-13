@@ -24,7 +24,8 @@ class AppSettingsTests: XCTestCase {
         XCTAssertEqual(appSettings.typeUnwrapping, .required, "default for type unwrapping")
         XCTAssertTrue(appSettings.addKeys, "default for add keys")
         XCTAssertFalse(appSettings.addDefaultValue, "default for add default value")
-        XCTAssertFalse(appSettings.addInitAndDictionary, "default for add init and dictionary")
+        XCTAssertFalse(appSettings.addInit, "default for add init")
+        XCTAssertFalse(appSettings.addDictionary, "default for add dictionary")
     }
 
     func testChangingSettings() {
@@ -45,8 +46,10 @@ class AppSettingsTests: XCTestCase {
         appSettings.addDefaultValue = true
         XCTAssertTrue(appSettings.addDefaultValue, "add default value")
         
-        appSettings.addInitAndDictionary = true
-        XCTAssertTrue(appSettings.addInitAndDictionary, "add init and dictionary")
+        appSettings.addInit = true
+        XCTAssertTrue(appSettings.addInit, "add init")
+        appSettings.addDictionary = true
+        XCTAssertTrue(appSettings.addDictionary, "add dictionary")
     }
     
     func testTypeUnwrappingStringConvertible() {
