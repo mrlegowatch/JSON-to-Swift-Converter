@@ -35,11 +35,9 @@ class JSONtoSwiftConverterUITests: XCTestCase {
         let addKeyDeclarationsCheckBox = window.checkBoxes["Add Key declarations"]
         let addDefaultValuesCheckBox = window.checkBoxes["Add default values"]
 
-        // TODO: enable addInitFromAndVarDictionaryCheckBox (•••) after we implement
-        // support for appSettings.addInitFromAndVarDictionary in JSONProperty and SourceEditorCommand.
-        //
-        // ••• let addInitFromAndVarDictionaryGetCheckBox = window.checkBoxes["Add init(from:) and var dictionary (get)"]
-
+        let addInitFromGetCheckBox = window.checkBoxes["Add init(from:)"]
+        let addVarDictionaryGetCheckBox = window.checkBoxes["Add var dictionary {get}"]
+        
         let outputStaticText = window.staticTexts["outputStaticText"]
 
         // TODO: "reset" the target application's UserDefaults default suite settings in 
@@ -57,9 +55,13 @@ class JSONtoSwiftConverterUITests: XCTestCase {
             addDefaultValuesCheckBox.click()
         }
         
-        // ••• if let value = addInitFromAndVarDictionaryGetCheckBox.value as? Int, value != 0 {
-        // •••     addInitFromAndVarDictionaryGetCheckBox.click()
-        // •••}
+        if let value = addInitFromGetCheckBox.value as? Int, value != 0 {
+            addInitFromGetCheckBox.click()
+        }
+        
+        if let value = addVarDictionaryGetCheckBox.value as? Int, value != 0 {
+            addVarDictionaryGetCheckBox.click()
+        }
         
         // Validate the initial state of the controls
         XCTAssertEqual(letRadioButton.value as? Int, 1, "let should be selected")
@@ -71,13 +73,14 @@ class JSONtoSwiftConverterUITests: XCTestCase {
         
         XCTAssertEqual(addKeyDeclarationsCheckBox.value as? Int, 1, "add key should be selected")
         XCTAssertEqual(addDefaultValuesCheckBox.value as? Int, 0, "add default values should be deselected")
-        // ••• XCTAssertEqual(addInitFromAndVarDictionaryGetCheckBox.value as? Int, 0, "add init and dictionary should be deselected")
+        XCTAssertEqual(addInitFromGetCheckBox.value as? Int, 0, "add init should be deselected")
+        XCTAssertEqual(addVarDictionaryGetCheckBox.value as? Int, 0, "add dictionary should be deselected")
         
         // Confirm the initial state of the output static text
         do {
             let output = outputStaticText.value as? String
             let lines = output?.components(separatedBy: "\n")
-            XCTAssertEqual(lines?.count, 8, "number of lines of output")
+            XCTAssertEqual(lines?.count, 9, "number of lines of output")
         }
 
         varRadioButton.click()
@@ -99,19 +102,26 @@ class JSONtoSwiftConverterUITests: XCTestCase {
         do {
             let output = outputStaticText.value as? String
             let lines = output?.components(separatedBy: "\n")
-            XCTAssertEqual(lines?.count, 3, "number of lines of output")
+            XCTAssertEqual(lines?.count, 4, "number of lines of output")
         }
         
         addDefaultValuesCheckBox.click()
         XCTAssertEqual(addDefaultValuesCheckBox.value as? Int, 1, "add default values should be selected")
 
-        // ••• addInitFromAndVarDictionaryGetCheckBox.click()
-        // ••• XCTAssertEqual(addInitFromAndVarDictionaryGetCheckBox.value as? Int, 1, "add init and dictionary should be selected")
-        // ••• do {
-        // •••     let output = outputStaticText.value as? String
-        // •••     let lines = output?.components(separatedBy: "\n")
-        // •••     XCTAssertEqual(lines?.count, 5, "number of lines of output")
-        // ••• }
+        // Turn add key back on so we can test add init and add var dictionary
+        addKeyDeclarationsCheckBox.click()
+
+        addInitFromGetCheckBox.click()
+        XCTAssertEqual(addInitFromGetCheckBox.value as? Int, 1, "add init and dictionary should be selected")
+        
+        addVarDictionaryGetCheckBox.click()
+        XCTAssertEqual(addVarDictionaryGetCheckBox.value as? Int, 1, "add init and dictionary should be selected")
+
+        do {
+            let output = outputStaticText.value as? String
+            let lines = output?.components(separatedBy: "\n")
+            XCTAssertEqual(lines?.count, 10, "number of lines of output")
+        }
     }
     
 }

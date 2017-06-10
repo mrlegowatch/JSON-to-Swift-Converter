@@ -14,7 +14,15 @@ extension String {
         case name
     }
     
-    /// Returns a camelCase version of this string with spaces removed. 
+    /// Characters that cause the next character to be capitalized.
+    internal static let removableCharacters: [UnicodeScalar] = [" ", "_", "-"]
+    
+    /// Returns whether this causes the next character to be capitalized.
+    internal func isRemovable(_ scalar: UnicodeScalar) -> Bool {
+        return String.removableCharacters.contains(scalar)
+    }
+    
+    /// Returns a camelCase version of this string with spaces, dashes and underscores removed.
     /// Each space in the name denotes a new capitalized word.
     ///
     /// - Parameter typeName: Capitalizes the beginning of the string if `.type`, 
@@ -23,15 +31,17 @@ extension String {
         guard self.characters.count > 0 else { return self }
         var newString: String = ""
         
-        let first = String(Character(self.unicodeScalars.first!))
-        newString.append(typeName == .type ? first.uppercased() : first.lowercased())
+        if !isRemovable(self.unicodeScalars.first!) {
+            let first = String(Character(self.unicodeScalars.first!))
+            newString.append(typeName == .type ? first.uppercased() : first.lowercased())
+        }
         var capitalizeNext = false
         for scalar in self.unicodeScalars.dropFirst() {
             if capitalizeNext {
                 let uppercaseCharacter = String(Character(scalar)).uppercased()
                 newString.append(uppercaseCharacter)
                 capitalizeNext = false
-            } else if scalar == " " {
+            } else if isRemovable(scalar) {
                 capitalizeNext = true
             } else {
                 let character = Character(scalar)

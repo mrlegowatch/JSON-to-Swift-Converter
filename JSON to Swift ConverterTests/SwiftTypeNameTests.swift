@@ -31,7 +31,6 @@ class SwiftTypeNameTests: XCTestCase {
         do {
             XCTAssertEqual("big blue marble in space".swiftType, "BigBlueMarbleInSpace", "swift type multiple words")
         }
-        
     }
     
     func testSwiftName() {
@@ -40,21 +39,40 @@ class SwiftTypeNameTests: XCTestCase {
         }
         
         do {
-            XCTAssertEqual("ABBY".swiftName, "aBBY", "swift type already capitalized")
+            XCTAssertEqual("ABBY".swiftName, "aBBY", "swift name not capitalized")
         }
         
         do {
-            XCTAssertEqual("frodo".swiftName, "frodo", "swift type not yet capitalized")
+            XCTAssertEqual("frodo".swiftName, "frodo", "swift name not capitalized")
         }
         
         do {
-            XCTAssertEqual("hello world".swiftName, "helloWorld", "swift type multiple words")
+            XCTAssertEqual("hello world".swiftName, "helloWorld", "swift name multiple words")
         }
         
         do {
-            XCTAssertEqual("big blue marble in space".swiftName, "bigBlueMarbleInSpace", "swift type multiple words")
+            XCTAssertEqual("big blue marble in space".swiftName, "bigBlueMarbleInSpace", "swift name multiple words")
+        }
+    }
+    
+    func testAlternativeSeparators() {
+        do {
+            XCTAssertEqual("hungry-jack".swiftName, "hungryJack", "dash not removed")
+        }
+        
+        do {
+            XCTAssertEqual("phone_home".swiftType, "PhoneHome", "underscore not removed")
+        }
+        
+        do {
+            XCTAssertEqual(" leading separator".swiftName, "leadingSeparator", "leading separator")
+        }
+        
+        do {
+            XCTAssertEqual("trailing separator_".swiftType, "TrailingSeparator", "trailing separator")
         }
         
     }
+
 
 }
