@@ -67,7 +67,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     }
     
     func openSettingsApp() {
-        NSWorkspace.shared().launchApplication(withBundleIdentifier: "com.flatearthstudio.JSON-to-Swift-Converter", options: [], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+        NSWorkspace.shared.launchApplication(withBundleIdentifier: "com.flatearthstudio.JSON-to-Swift-Converter", options: [], additionalEventParamDescriptor: nil, launchIdentifier: nil)
     }
     
     func outputResult(_ property: JSONProperty, to buffer: XCSourceTextBuffer, in range: XCSourceTextRange) {
@@ -75,7 +75,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         buffer.lines.removeObjects(in: NSRange(location: range.start.line, length: range.end.line - range.start.line))
         
         // Insert the new lines
-        let lineIndent = LineIndent(useTabsForIndentation: buffer.usesTabsForIndentation, indentationWidth: buffer.indentationWidth, level: 1)
+        let lineIndent = LineIndent(useTabs: buffer.usesTabsForIndentation, indentationWidth: buffer.indentationWidth, level: 1)
         
         // Declare the keys
         let lineCount = buffer.lines.count

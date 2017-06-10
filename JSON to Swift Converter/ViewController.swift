@@ -11,7 +11,7 @@ import Cocoa
 extension NSButton {
     
     var isChecked: Bool {
-        return self.state == NSOnState
+        return self.state == .onState
     }
     
 }
@@ -20,7 +20,7 @@ extension String {
     
     /// Returns an attributed string with the specified color.
     func attributed(with color: NSColor) -> NSAttributedString {
-        let attributes: [String: Any] = [NSForegroundColorAttributeName: color]
+        let attributes: [NSAttributedStringKey: Any] = [.foregroundColor: color]
         return NSMutableAttributedString(string: self, attributes: attributes)
     }
     
@@ -84,24 +84,24 @@ class ViewController: NSViewController {
     /// Update the controls to match the user defaults settings
     func updateControls() {
         let isDeclarationLet = appSettings.declaration == .useLet
-        declarationLet.state = isDeclarationLet ? NSOnState : NSOffState
-        declarationVar.state = isDeclarationLet ? NSOffState : NSOnState
+        declarationLet.state = isDeclarationLet ? .onState : .offState
+        declarationVar.state = isDeclarationLet ? .offState : .onState
         
         let typeUnwrapping = appSettings.typeUnwrapping
-        typeExplicit.state = typeUnwrapping == .explicit ? NSOnState : NSOffState
-        typeOptional.state = typeUnwrapping == .optional ? NSOnState : NSOffState
-        typeRequired.state = typeUnwrapping == .required ? NSOnState : NSOffState
+        typeExplicit.state = typeUnwrapping == .explicit ? .onState : .offState
+        typeOptional.state = typeUnwrapping == .optional ? .onState : .offState
+        typeRequired.state = typeUnwrapping == .required ? .onState : .offState
         
-        addDefaultValue.state = appSettings.addDefaultValue ? NSOnState : NSOffState
-        addKeys.state = appSettings.addKeys ? NSOnState : NSOffState
-        addInit.state = appSettings.addInit ? NSOnState : NSOffState
-        addDictionary.state = appSettings.addDictionary ? NSOnState : NSOffState
+        addDefaultValue.state = appSettings.addDefaultValue ? .onState : .offState
+        addKeys.state = appSettings.addKeys ? .onState : .offState
+        addInit.state = appSettings.addInit ? .onState : .offState
+        addDictionary.state = appSettings.addDictionary ? .onState : .offState
     }
     
     /// Update the output text view to reflect the current settings
     func updateOutput() {
-        addInit.isEnabled = addKeys.state == NSOnState
-        addDictionary.isEnabled = addKeys.state == NSOnState
+        addInit.isEnabled = addKeys.state == .onState
+        addDictionary.isEnabled = addKeys.state == .onState
         
         let declaration = appSettings.declaration == .useLet ? "let" : "var"
         let typeUnwrapping = appSettings.typeUnwrapping == .optional ? "?" : appSettings.typeUnwrapping == .required ? "!" : ""
@@ -109,7 +109,7 @@ class ViewController: NSViewController {
         let outputData = [["user name", "String", "\"\""], ["age", "Int", "0"]]
         let outputString = NSMutableAttributedString(string: "")
         outputString.beginEditing()
-        let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
+        let lineIndent = LineIndent(useTabs: false, indentationWidth: 4, level: 1)
         
         // Add the keys if set, scoped if set
         if appSettings.addKeys {

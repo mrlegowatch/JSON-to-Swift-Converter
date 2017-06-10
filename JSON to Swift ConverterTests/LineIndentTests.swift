@@ -13,7 +13,7 @@ class LineIndentTests: XCTestCase {
     func testLineIndent() {
         // spaces, width of 4
         do {
-            let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+            let indent = LineIndent(useTabs: false, indentationWidth: 4)
             
             XCTAssertEqual(indent.level, 0, "level")
             XCTAssertEqual(indent.indentPerLevel, "    ", "indent per level spaces width of 4")
@@ -23,7 +23,7 @@ class LineIndentTests: XCTestCase {
         
         // tabs, width of 8
         do {
-            let indent = LineIndent(useTabsForIndentation: true, indentationWidth: 8, level: 2)
+            let indent = LineIndent(useTabs: true, indentationWidth: 8, level: 2)
             
             XCTAssertEqual(indent.level, 2, "level")
             XCTAssertEqual(indent.indentPerLevel, "\t", "indent per level tabs width of 8")
@@ -33,7 +33,7 @@ class LineIndentTests: XCTestCase {
         
         // spaces, width of 2
         do {
-            let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 2, level: 1)
+            let indent = LineIndent(useTabs: false, indentationWidth: 2, level: 1)
             
             XCTAssertEqual(indent.level, 1, "level")
             XCTAssertEqual(indent.indentPerLevel, "  ", "indent per level spaces width of 2")
@@ -43,7 +43,7 @@ class LineIndentTests: XCTestCase {
     }
     
     func testLineIndented() {
-        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        let indent = LineIndent(useTabs: false, indentationWidth: 4)
         
         // spaces, width of 4
         do {

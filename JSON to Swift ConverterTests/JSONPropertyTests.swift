@@ -107,7 +107,7 @@ class JSONPropertyTests: XCTestCase {
         let property = JSONProperty(from: string)
         XCTAssertNotNil(property, "property should be non-nil")
         
-        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        let indent = LineIndent(useTabs: false, indentationWidth: 4)
         
         // Note: we are going to mess with app settings shared instance, which affects state across unit test sessions.
         var appSettings = AppSettings.sharedInstance
@@ -183,7 +183,7 @@ class JSONPropertyTests: XCTestCase {
         let property = JSONProperty(from: string)
         XCTAssertNotNil(property, "property should be non-nil")
         
-        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        let indent = LineIndent(useTabs: false, indentationWidth: 4)
         
         // Note: we are going to mess with app settings shared instance, which affects state across unit test sessions.
         var appSettings = AppSettings.sharedInstance
@@ -227,7 +227,7 @@ class JSONPropertyTests: XCTestCase {
         let property = JSONProperty(from: string)
         XCTAssertNotNil(property, "property should be non-nil")
 
-        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        let indent = LineIndent(useTabs: false, indentationWidth: 4)
 
         do {
             let propertyContent = property?.propertyContent(indent: indent)
@@ -240,7 +240,7 @@ class JSONPropertyTests: XCTestCase {
         let testClasses = try! String(contentsOf: testClassesFile, encoding: .utf8)
         let property = JSONProperty(from: testClasses)!
         
-        let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
+        let lineIndent = LineIndent(useTabs: false, indentationWidth: 4, level: 1)
         
         let propertyKeys = property.propertyKeys(indent: lineIndent)
         print("propertyKeys = \n\(propertyKeys)")
@@ -259,7 +259,7 @@ class JSONPropertyTests: XCTestCase {
 
         self.measure {
         
-            let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
+            let lineIndent = LineIndent(useTabs: false, indentationWidth: 4, level: 1)
             
             let _ = property.propertyKeys(indent: lineIndent)
             let _ = property.typeContent(indent: lineIndent)

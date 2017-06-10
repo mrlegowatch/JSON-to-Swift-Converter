@@ -20,9 +20,9 @@ public struct LineIndent {
 
     /// Creates a LineIndent from the settings for the current editor buffer.
     /// The default level of 0 has no indentation.
-    public init(useTabsForIndentation: Bool, indentationWidth: Int, level: Int = 0) {
+    public init(useTabs: Bool, indentationWidth: Int, level: Int = 0) {
         self.level = level
-        self.indentPerLevel = useTabsForIndentation ? "\t" : String(repeating: " ", count: indentationWidth)
+        self.indentPerLevel = useTabs ? "\t" : String(repeating: " ", count: indentationWidth)
     }
     
     /// Creates a new LineIndent from existing LineIndent values.
