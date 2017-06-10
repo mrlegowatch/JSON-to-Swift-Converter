@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.1.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
@@ -34,7 +34,7 @@
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>com.flatearthstudio.convert-json-to-swift.convert</string>
 					<key>XCSourceEditorCommandName</key>
-					<string>Convert JSON to Swift</string>
+					<string>Convert</string>
 				</dict>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>

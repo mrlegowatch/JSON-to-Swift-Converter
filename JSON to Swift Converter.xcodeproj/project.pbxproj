@@ -106,6 +106,8 @@
 		B6EFCB7C1E5B444000966E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F9B1F31E99371E0045CD8D /* TestClasses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestClasses.json; sourceTree = "<group>"; };
 		B6F9B1F51E9941FC0045CD8D /* TestConverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConverted.swift; sourceTree = "<group>"; };
+		B6FE7DCF1EEC161300BC97A4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B6FE7DD01EEC161300BC97A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,8 @@
 		B6EFCB361E5B443600966E1D = {
 			isa = PBXGroup;
 			children = (
+				B6FE7DCF1EEC161300BC97A4 /* LICENSE */,
+				B6FE7DD01EEC161300BC97A4 /* README.md */,
 				B63AAA061E61C4130032CB12 /* SharedSources */,
 				B6EFCB411E5B443600966E1D /* JSON to Swift Converter */,
 				B6EFCB531E5B443600966E1D /* JSON to Swift ConverterTests */,
