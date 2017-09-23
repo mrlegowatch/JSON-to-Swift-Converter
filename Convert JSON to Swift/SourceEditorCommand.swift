@@ -17,7 +17,7 @@ struct ConversionError {
     
     static let domain = "com.flatearthstudio.Convert-JSON-to-Swift"
     
-    static func localized(_ message: String) ->  [AnyHashable : Any] {
+    static func localized(_ message: String) ->  [String : Any] {
         // TODO: localize the error messages
         return [NSLocalizedDescriptionKey: message]
     }

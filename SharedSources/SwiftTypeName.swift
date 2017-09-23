@@ -22,6 +22,11 @@ extension String {
         return String.removableCharacters.contains(character)
     }
     
+    /// Returns whether this string contains any removable characters.
+    internal func containsRemovableCharacters() -> Bool {
+        return (self.first(where: { isRemovable($0) }) != nil)
+    }
+    
     /// Returns a camelCase version of this string with spaces, dashes and underscores removed.
     /// Each space in the name denotes a new capitalized word.
     ///

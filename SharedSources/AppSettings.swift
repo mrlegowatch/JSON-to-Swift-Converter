@@ -15,7 +15,7 @@ public struct AppSettings {
     public static let sharedInstance = AppSettings()
     
     /// The default shared user defaults suite for the settings application and the Xcode app extension.
-    internal static let sharedUserDefaults = UserDefaults(suiteName: "JSON-to-Swift-Converter")!
+    public static let sharedUserDefaults = UserDefaults(suiteName: "JSON-to-Swift-Converter")!
     
     /// The internal settings.
     internal let userDefaults: UserDefaults
@@ -25,9 +25,7 @@ public struct AppSettings {
         static let declaration = "Declaration"
         static let typeUnwrapping = "TypeUnwrapping"
         static let addDefaultValue = "AddDefaultValue"
-        static let addKeys = "AddKeys"
-        static let addInit = "AddInit"
-        static let addDictionary = "AddDictionary"
+        static let supportCodable = "SupportCodable"
     }
     
     /// Initializes to user defaults settings. Defaults to the shared user defaults.
@@ -71,17 +69,6 @@ public struct AppSettings {
         }
     }
     
-    /// Accesses whether to add key declarations. Default is true.
-    public var addKeys: Bool {
-        get {
-            guard userDefaults.object(forKey: Key.addKeys) != nil else { return true }
-            return userDefaults.bool(forKey: Key.addKeys)
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.addKeys)
-        }
-    }
-    
      /// Accesses whether to add a default value for the property. Default is false.
     public var addDefaultValue: Bool {
         get {
@@ -93,28 +80,17 @@ public struct AppSettings {
         }
     }
     
-    /// Accesses whether to add init(from: Any?).
-    public var addInit: Bool {
+    /// Accesses whether to add key declarations. Default is true.
+    public var supportCodable: Bool {
         get {
-            guard userDefaults.object(forKey: Key.addInit) != nil else { return false }
-            return userDefaults.bool(forKey: Key.addInit)
+            guard userDefaults.object(forKey: Key.supportCodable) != nil else { return true }
+            return userDefaults.bool(forKey: Key.supportCodable)
         }
         set {
-            userDefaults.set(newValue, forKey: Key.addInit)
+            userDefaults.set(newValue, forKey: Key.supportCodable)
         }
     }
-
-    /// Accesses whether to add var dictionary: Any? { get }.
-    public var addDictionary: Bool {
-        get {
-            guard userDefaults.object(forKey: Key.addDictionary) != nil else { return false }
-            return userDefaults.bool(forKey: Key.addDictionary)
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.addDictionary)
-        }
-    }
-
+    
 }
 
 extension AppSettings.TypeUnwrapping: CustomStringConvertible {

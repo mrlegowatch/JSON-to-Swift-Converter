@@ -15,16 +15,13 @@ class JSONPropertyTests: XCTestCase {
         
         // This test is sensitive to UserDefaults state which persists between unit test sessions.
         let appSettings = AppSettings.sharedInstance
-        // NB must set to a specific nil type else Swift chooses URL? which puts the default into a bad state.
-        // Also, using setNilForKey doesn't work if the setting has already been set to NSNumber.
+        // Note: using setNilForKey doesn't work if the setting has already been set to NSNumber.
         let nilNSNumber: NSNumber? = nil
         appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.declaration)
         appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.typeUnwrapping)
 
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addKeys)
+        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.supportCodable)
         appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addDefaultValue)
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addInit)
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addDictionary)
     }
     
     func testNumberValueType() {
@@ -125,14 +122,14 @@ class JSONPropertyTests: XCTestCase {
             let propertyKeys = property?.propertyKeys(indent: indent)
             print("propertyKeys = \n\(propertyKeys ?? "")")
             
-            XCTAssertTrue(propertyKeys?.hasPrefix("\nstruct Key {\n") ?? false, "prefix for property keys")
-            XCTAssertTrue(propertyKeys?.contains("    static let ") ?? false, "declarations for property keys")
+            XCTAssertTrue(propertyKeys?.hasPrefix("\nprivate enum CodingKeys: String, CodingKey {\n") ?? false, "prefix for property keys")
+            XCTAssertTrue(propertyKeys?.contains("    case ") ?? false, "declarations for property keys")
             XCTAssertTrue(propertyKeys?.contains(" miscellaneousScores = ") ?? false, "a specific key declaration")
             XCTAssertTrue(propertyKeys?.contains("\"miscellaneous scores\"") ?? false, "a specific key value")
             XCTAssertTrue(propertyKeys?.hasSuffix("\n}\n") ?? false, "suffix for property keys")
             
             // Change AppSettings addKeys
-            appSettings.addKeys = false
+            appSettings.supportCodable = false
             
             let emptyKeys = property?.propertyKeys(indent: indent)
             XCTAssertEqual(emptyKeys ?? "not empty", "", "propertyKeys should return empty string if addKeys setting is false")
@@ -188,9 +185,7 @@ class JSONPropertyTests: XCTestCase {
         // Note: we are going to mess with app settings shared instance, which affects state across unit test sessions.
         var appSettings = AppSettings.sharedInstance
         appSettings.addDefaultValue = true
-        appSettings.addKeys = true
-        appSettings.addInit = true
-        appSettings.addDictionary = true
+        appSettings.supportCodable = true
         
         // var with optional will set default values in the declarations
         do {
