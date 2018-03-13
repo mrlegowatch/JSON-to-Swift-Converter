@@ -3,16 +3,13 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/22/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import Foundation
 
-
+/// Persistence adapter for UserDefaults mapped to the settings required by this app. This also wraps the user defaults shared between the settings application and the Xcode app extension.
 public struct AppSettings {
-    
-    /// Returns a shared instance of this app's (shared) user defaults settings.
-    public static let sharedInstance = AppSettings()
     
     /// The default shared user defaults suite for the settings application and the Xcode app extension.
     public static let sharedUserDefaults = UserDefaults(suiteName: "JSON-to-Swift-Converter")!
@@ -29,7 +26,7 @@ public struct AppSettings {
     }
     
     /// Initializes to user defaults settings. Defaults to the shared user defaults.
-    public init(_ userDefaults: UserDefaults = AppSettings.sharedUserDefaults) {
+    public init(_ userDefaults: UserDefaults = sharedUserDefaults) {
         self.userDefaults = userDefaults
     }
     
@@ -107,5 +104,20 @@ extension AppSettings.TypeUnwrapping: CustomStringConvertible {
         }
         
         return type
+    }
+}
+
+extension AppSettings {
+    
+    /// For testing: encapsulate what it takes to do a full reset on settings.
+    internal func reset() {
+        // Note: Setting to plain 'nil' doesn't work; that causes a 'nil URL?' to be the default (weird). Radar'd.
+        // Note: using setNilForKey doesn't work if the setting has already been set to NSNumber.
+        let nilNSNumber: NSNumber? = nil
+        userDefaults.set(nilNSNumber, forKey: Key.declaration)
+        userDefaults.set(nilNSNumber, forKey: Key.typeUnwrapping)
+        
+        userDefaults.set(nilNSNumber, forKey: Key.supportCodable)
+        userDefaults.set(nilNSNumber, forKey: Key.addDefaultValue)
     }
 }

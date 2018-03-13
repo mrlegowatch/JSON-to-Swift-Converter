@@ -6,7 +6,7 @@ This is a lightweight naïve implementation for converting JSON-formatted text i
 
 There are several settings for controlling how the code is generated. By default, coding keys are declared, and properties and nested types are declared. The settings can be changed from the application that hosts the Xcode editor extension.
 
-Separator characters (space, dash, and underscore) in JSON property names denote word boundaries, e.g., for a JSON property name "camel caps", "camelCaps" is generated for the corresponding Swift key name. Swift struct types are generated as substitutable with a "Type" suffix, for example, "<#<CamelCapsType>#>".
+Separator characters (space, dash, and underscore) in JSON property names denote word boundaries, e.g., for a JSON property name "camel case", "camelCase" is generated for the corresponding Swift key name. Swift struct types are generated as substitutable with a "Type" suffix, for example, "<#CamelCaseType#>".
 
 ## Example
 

@@ -3,7 +3,7 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/20/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import Cocoa
@@ -70,7 +70,7 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var output: NSTextField!
     
-    var appSettings = AppSettings.sharedInstance
+    var appSettings = AppSettings()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -3,7 +3,7 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/25/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import XCTest
@@ -12,9 +12,9 @@ import XCTest
 class AppSettingsTests: XCTestCase {
     
     func testSharedInstance() {
-        /// Only use AppSettings.sharedInstance once here for code coverage,
+        /// Use AppSettings default constructor once here for code coverage,
         /// because it will access the shared UserDefaults which may change between tests.
-        let _ = AppSettings.sharedInstance
+        let _ = AppSettings()
     }
     
     func testDefaultSettings() {

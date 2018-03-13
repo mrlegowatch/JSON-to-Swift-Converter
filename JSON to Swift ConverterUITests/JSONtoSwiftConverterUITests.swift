@@ -3,7 +3,7 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/20/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import XCTest
@@ -89,7 +89,7 @@ class JSONtoSwiftConverterUITests: XCTestCase {
         do {
             let output = outputStaticText.value as? String
             let lines = output?.components(separatedBy: "\n")
-            XCTAssertEqual(lines?.count, 4, "number of lines of output")
+            XCTAssertEqual(lines?.count, 9, "number of lines of output")
         }
         
         addDefaultValuesCheckBox.click()
