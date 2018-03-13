@@ -54,5 +54,25 @@ class SwiftTypeNameTests: XCTestCase {
             XCTAssertEqual("big blue marble in space".swiftName, "bigBlueMarbleInSpace", "swift name multiple words")
         }
     }
+    
+    func testAlternativeSeparators() {
+        do {
+            XCTAssertEqual("hungry-jack".swiftName, "hungryJack", "dash not removed")
+        }
+        
+        do {
+            XCTAssertEqual("phone_home".swiftType, "PhoneHome", "underscore not removed")
+        }
+        
+        do {
+            XCTAssertEqual(" leading separator".swiftName, "leadingSeparator", "leading separator")
+        }
+        
+        do {
+            XCTAssertEqual("trailing separator_".swiftType, "TrailingSeparator", "trailing separator")
+        }
+        
+    }
+
 
 }
