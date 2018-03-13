@@ -41,7 +41,7 @@ Into the following Swift implementation:
         let coefficient
     }
 
-    struct <#CurrencyType#> {
+    struct <#CurrencyType#>: Codable {
 
         let longNamePlural: String!
         let coefficient: Double!
@@ -55,7 +55,7 @@ Into the following Swift implementation:
 ```
 
 ## Usage
-In Xcode, choose `Editor` > `Convert JSON to Swift` > `Convert`. 
+In Xcode, choose `Editor` > `Convert JSON to Swift` > `Convert JSON to Swift`. 
 
 ## Settings
 
@@ -65,6 +65,7 @@ In Xcode, choosing `Editor` > `Convert JSON to Swift` > `Settings...` opens the 
 - `typeUnwrapping`: options include `explicit`, `optional` ("?"), or `required` ("!") (default is `required`)
 - `supportCodable`: whether to provide and `init(from:)` and `encode(to:)` function (default is true)
 - `addDefaultValue`: whether to add default values, e.g., "= 0" (default is false)
+- `addInitAndDictionary`: whether to add an init(from:) method and dictionary: variable accessor (default is false)
 
 ## Credits
 
