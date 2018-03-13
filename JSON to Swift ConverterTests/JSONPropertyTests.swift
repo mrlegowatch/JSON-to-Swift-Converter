@@ -3,28 +3,22 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/25/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import XCTest
 
 class JSONPropertyTests: XCTestCase {
 
+    var appSettings: AppSettings!
+    
     override func setUp() {
         super.setUp()
         
-        // This test is sensitive to UserDefaults state which persists between unit test sessions.
-        let appSettings = AppSettings.sharedInstance
-        // NB must set to a specific nil type else Swift chooses URL? which puts the default into a bad state.
-        // Also, using setNilForKey doesn't work if the setting has already been set to NSNumber.
-        let nilNSNumber: NSNumber? = nil
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.declaration)
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.typeUnwrapping)
-
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addKeys)
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addDefaultValue)
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addInit)
-        appSettings.userDefaults.set(nilNSNumber, forKey: AppSettings.Key.addDictionary)
+        // Use an isolated version of app settings
+        appSettings = AppSettings(UserDefaults(suiteName: "JSON-to-Swift-tests-properties")!)
+        
+        appSettings.reset()
     }
     
     func testNumberValueType() {
@@ -87,7 +81,7 @@ class JSONPropertyTests: XCTestCase {
     func testSimpleProperty() {
         /// Test a simple property
         do {
-            let property = JSONProperty("key", name: "name", dictionary: [:])
+            let property = JSONProperty("key", name: "name", dictionary: [:], appSettings: appSettings)
             XCTAssertEqual(property.key, "key", "property key")
             XCTAssertEqual(property.name, "name", "property name")
             XCTAssertTrue(property.dictionary.isEmpty, "property dictionary")
@@ -95,7 +89,7 @@ class JSONPropertyTests: XCTestCase {
         
         /// Test an invalid string
         do {
-            let property = JSONProperty(from: "\"hello\"")
+            let property = JSONProperty(from: "\"hello\"", appSettings: appSettings)
             XCTAssertNil(property, "simple string should return nil property")
         }
     }
@@ -104,13 +98,12 @@ class JSONPropertyTests: XCTestCase {
         /// Test a slightly non-trival dictionary with child dictionaries, arrays of ints, and arrays of dictionaries
         let string = "{ \"name\": \"Bilbo\", \"info\": [ { \"age\": 111 }, { \"weight\": 25.8 } ], \"attributes\": { \"strength\": 12 }, \"miscellaneous scores\": [2, 3] }"
         
-        let property = JSONProperty(from: string)
+        let property = JSONProperty(from: string, appSettings: appSettings)
         XCTAssertNotNil(property, "property should be non-nil")
         
-        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        let indent = LineIndent(useTabs: false, indentationWidth: 4)
         
         // Note: we are going to mess with app settings shared instance, which affects state across unit test sessions.
-        var appSettings = AppSettings.sharedInstance
 
         do {
             // NB, this is a white box test, allKeys shouldn't be called directly
@@ -125,17 +118,11 @@ class JSONPropertyTests: XCTestCase {
             let propertyKeys = property?.propertyKeys(indent: indent)
             print("propertyKeys = \n\(propertyKeys ?? "")")
             
-            XCTAssertTrue(propertyKeys?.hasPrefix("\nstruct Key {\n") ?? false, "prefix for property keys")
-            XCTAssertTrue(propertyKeys?.contains("    static let ") ?? false, "declarations for property keys")
+            XCTAssertTrue(propertyKeys?.hasPrefix("\nprivate enum CodingKeys: String, CodingKey {\n") ?? false, "prefix for property keys")
+            XCTAssertTrue(propertyKeys?.contains("    case ") ?? false, "declarations for property keys")
             XCTAssertTrue(propertyKeys?.contains(" miscellaneousScores = ") ?? false, "a specific key declaration")
             XCTAssertTrue(propertyKeys?.contains("\"miscellaneous scores\"") ?? false, "a specific key value")
             XCTAssertTrue(propertyKeys?.hasSuffix("\n}\n") ?? false, "suffix for property keys")
-            
-            // Change AppSettings addKeys
-            appSettings.addKeys = false
-            
-            let emptyKeys = property?.propertyKeys(indent: indent)
-            XCTAssertEqual(emptyKeys ?? "not empty", "", "propertyKeys should return empty string if addKeys setting is false")
         }
         
         // Test typeContent output
@@ -144,8 +131,8 @@ class JSONPropertyTests: XCTestCase {
             XCTAssertFalse(typeContent?.isEmpty ?? true, "typeContent should be non-empty")
             print("typeContent = \n\(typeContent ?? "")")
 
-            XCTAssertTrue(typeContent?.contains("struct <#InfoType#> {") ?? false, "a specific type declaration")
-            XCTAssertTrue(typeContent?.contains("struct <#AttributesType#> {") ?? false, "a specific type declaration")
+            XCTAssertTrue(typeContent?.contains("struct <#InfoType#>: Codable {") ?? false, "a specific type declaration")
+            XCTAssertTrue(typeContent?.contains("struct <#AttributesType#>: Codable {") ?? false, "a specific type declaration")
         }
         
         // Test propertyContent output
@@ -180,17 +167,14 @@ class JSONPropertyTests: XCTestCase {
     func testAddInitAndDictionary() {
         let string = "{ \"name\": \"Bilbo\", \"info\": [ { \"age\": 111 }, { \"weight\": 25.8 } ], \"attributes\": { \"strength\": 12 }, \"miscellaneous scores\": [2, 3] }"
 
-        let property = JSONProperty(from: string)
+        let property = JSONProperty(from: string, appSettings: appSettings)
         XCTAssertNotNil(property, "property should be non-nil")
         
-        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        let indent = LineIndent(useTabs: false, indentationWidth: 4)
         
         // Note: we are going to mess with app settings shared instance, which affects state across unit test sessions.
-        var appSettings = AppSettings.sharedInstance
         appSettings.addDefaultValue = true
-        appSettings.addKeys = true
-        appSettings.addInit = true
-        appSettings.addDictionary = true
+        appSettings.supportCodable = true
         
         // var with optional will set default values in the declarations
         do {
@@ -224,10 +208,10 @@ class JSONPropertyTests: XCTestCase {
     func testJSONArray() {
         let string = "[\"name\", \"age\"]"
         
-        let property = JSONProperty(from: string)
+        let property = JSONProperty(from: string, appSettings: appSettings)
         XCTAssertNotNil(property, "property should be non-nil")
 
-        let indent = LineIndent(useTabsForIndentation: false, indentationWidth: 4)
+        let indent = LineIndent(useTabs: false, indentationWidth: 4)
 
         do {
             let propertyContent = property?.propertyContent(indent: indent)
@@ -236,11 +220,20 @@ class JSONPropertyTests: XCTestCase {
     }
     
     func testJSONPropertyOutput() {
-        let testClassesFile = Bundle(for: JSONPropertyTests.self).url(forResource: "TestClasses", withExtension: "json")!
-        let testClasses = try! String(contentsOf: testClassesFile, encoding: .utf8)
-        let property = JSONProperty(from: testClasses)!
+        guard let testClassesFile = Bundle(for: JSONPropertyTests.self).url(forResource: "TestClasses", withExtension: "json") else {
+            XCTFail("TestClasses.json is missing")
+            return
+        }
+        guard let testClasses = try? String(contentsOf: testClassesFile) else {
+            XCTFail("TestClasses.json could not be converted to string.")
+            return
+        }
+        guard let property = JSONProperty(from: testClasses, appSettings: appSettings) else {
+            XCTFail("JSONProperty could not be parsed.")
+            return
+        }
         
-        let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
+        let lineIndent = LineIndent(useTabs: false, indentationWidth: 4, level: 1)
         
         let propertyKeys = property.propertyKeys(indent: lineIndent)
         print("propertyKeys = \n\(propertyKeys)")
@@ -255,11 +248,11 @@ class JSONPropertyTests: XCTestCase {
     func testJSONPropertyPerformance() {
         let testClassesFile = Bundle(for: JSONPropertyTests.self).url(forResource: "TestClasses", withExtension: "json")!
         let testClasses = try! String(contentsOf: testClassesFile, encoding: .utf8)
-        let property = JSONProperty(from: testClasses)!
+        let property = JSONProperty(from: testClasses, appSettings: appSettings)!
 
         self.measure {
         
-            let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
+            let lineIndent = LineIndent(useTabs: false, indentationWidth: 4, level: 1)
             
             let _ = property.propertyKeys(indent: lineIndent)
             let _ = property.typeContent(indent: lineIndent)

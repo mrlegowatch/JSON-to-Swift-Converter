@@ -3,7 +3,7 @@
 //  Convert JSON to Swift
 //
 //  Created by Brian Arnold on 2/20/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ struct ConversionError {
     
     static let domain = "com.flatearthstudio.Convert-JSON-to-Swift"
     
-    static func localized(_ message: String) ->  [AnyHashable : Any] {
+    static func localized(_ message: String) ->  [String : Any] {
         // TODO: localize the error messages
         return [NSLocalizedDescriptionKey: message]
     }
@@ -61,34 +61,28 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             jsonString += buffer.lines[index] as! String
         }
         guard !jsonString.isEmpty else { throw ConversionError.noSelection }
-        guard let property = JSONProperty(from: jsonString) else { throw ConversionError.invalidJSON }
+        let appSettings = AppSettings()
+        guard let property = JSONProperty(from: jsonString, appSettings: appSettings) else { throw ConversionError.invalidJSON }
         
         outputResult(property, to: buffer, in: range)
     }
     
     func openSettingsApp() {
-        NSWorkspace.shared().launchApplication(withBundleIdentifier: "com.flatearthstudio.JSON-to-Swift-Converter", options: [], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+        NSWorkspace.shared.launchApplication(withBundleIdentifier: "com.flatearthstudio.JSON-to-Swift-Converter", options: [], additionalEventParamDescriptor: nil, launchIdentifier: nil)
     }
     
     func outputResult(_ property: JSONProperty, to buffer: XCSourceTextBuffer, in range: XCSourceTextRange) {
         // Remove the current lines
         buffer.lines.removeObjects(in: NSRange(location: range.start.line, length: range.end.line - range.start.line))
         
-        // Insert the new lines
-        let lineIndent = LineIndent(useTabsForIndentation: buffer.usesTabsForIndentation, indentationWidth: buffer.indentationWidth, level: 1)
+        // Generate the new lines
+        let lineIndent = LineIndent(useTabs: buffer.usesTabsForIndentation, indentationWidth: buffer.indentationWidth, level: 1)
+        let output = property.generateOutput(lineIndent: lineIndent)
         
-        // Declare the keys
+        // Insert the new lines
         let lineCount = buffer.lines.count
-        buffer.lines.insert(property.propertyKeys(indent: lineIndent), at: range.start.line)
-        var insertedLineCount = buffer.lines.count - lineCount
-
-        // Declare the types
-        buffer.lines.insert(property.typeContent(indent: lineIndent), at: range.start.line + insertedLineCount)
-        insertedLineCount = buffer.lines.count - lineCount
-
-        // Declare the properties
-        buffer.lines.insert(property.propertyContent(indent: lineIndent), at: range.start.line + insertedLineCount)
-        insertedLineCount = buffer.lines.count - lineCount
+        buffer.lines.insert(output, at: range.start.line)
+        let insertedLineCount = buffer.lines.count - lineCount
         
         // Update the selection
         let selection = XCSourceTextRange(start: XCSourceTextPosition(line: range.start.line, column: 0), end: XCSourceTextPosition(line: range.start.line + insertedLineCount, column: 0))

@@ -3,19 +3,16 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/22/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import Foundation
 
-
+/// Persistence adapter for UserDefaults mapped to the settings required by this app. This also wraps the user defaults shared between the settings application and the Xcode app extension.
 public struct AppSettings {
     
-    /// Returns a shared instance of this app's (shared) user defaults settings.
-    public static let sharedInstance = AppSettings()
-    
     /// The default shared user defaults suite for the settings application and the Xcode app extension.
-    internal static let sharedUserDefaults = UserDefaults(suiteName: "JSON-to-Swift-Converter")!
+    public static let sharedUserDefaults = UserDefaults(suiteName: "JSON-to-Swift-Converter")!
     
     /// The internal settings.
     internal let userDefaults: UserDefaults
@@ -25,13 +22,11 @@ public struct AppSettings {
         static let declaration = "Declaration"
         static let typeUnwrapping = "TypeUnwrapping"
         static let addDefaultValue = "AddDefaultValue"
-        static let addKeys = "AddKeys"
-        static let addInit = "AddInit"
-        static let addDictionary = "AddDictionary"
+        static let supportCodable = "SupportCodable"
     }
     
     /// Initializes to user defaults settings. Defaults to the shared user defaults.
-    public init(_ userDefaults: UserDefaults = AppSettings.sharedUserDefaults) {
+    public init(_ userDefaults: UserDefaults = sharedUserDefaults) {
         self.userDefaults = userDefaults
     }
     
@@ -71,17 +66,6 @@ public struct AppSettings {
         }
     }
     
-    /// Accesses whether to add key declarations. Default is true.
-    public var addKeys: Bool {
-        get {
-            guard userDefaults.object(forKey: Key.addKeys) != nil else { return true }
-            return userDefaults.bool(forKey: Key.addKeys)
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.addKeys)
-        }
-    }
-    
      /// Accesses whether to add a default value for the property. Default is false.
     public var addDefaultValue: Bool {
         get {
@@ -93,28 +77,17 @@ public struct AppSettings {
         }
     }
     
-    /// Accesses whether to add init(from: Any?).
-    public var addInit: Bool {
+    /// Accesses whether to add key declarations. Default is true.
+    public var supportCodable: Bool {
         get {
-            guard userDefaults.object(forKey: Key.addInit) != nil else { return false }
-            return userDefaults.bool(forKey: Key.addInit)
+            guard userDefaults.object(forKey: Key.supportCodable) != nil else { return true }
+            return userDefaults.bool(forKey: Key.supportCodable)
         }
         set {
-            userDefaults.set(newValue, forKey: Key.addInit)
+            userDefaults.set(newValue, forKey: Key.supportCodable)
         }
     }
-
-    /// Accesses whether to add var dictionary: Any? { get }.
-    public var addDictionary: Bool {
-        get {
-            guard userDefaults.object(forKey: Key.addDictionary) != nil else { return false }
-            return userDefaults.bool(forKey: Key.addDictionary)
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.addDictionary)
-        }
-    }
-
+    
 }
 
 extension AppSettings.TypeUnwrapping: CustomStringConvertible {
@@ -131,5 +104,20 @@ extension AppSettings.TypeUnwrapping: CustomStringConvertible {
         }
         
         return type
+    }
+}
+
+extension AppSettings {
+    
+    /// For testing: encapsulate what it takes to do a full reset on settings.
+    internal func reset() {
+        // Note: Setting to plain 'nil' doesn't work; that causes a 'nil URL?' to be the default (weird). Radar'd.
+        // Note: using setNilForKey doesn't work if the setting has already been set to NSNumber.
+        let nilNSNumber: NSNumber? = nil
+        userDefaults.set(nilNSNumber, forKey: Key.declaration)
+        userDefaults.set(nilNSNumber, forKey: Key.typeUnwrapping)
+        
+        userDefaults.set(nilNSNumber, forKey: Key.supportCodable)
+        userDefaults.set(nilNSNumber, forKey: Key.addDefaultValue)
     }
 }
