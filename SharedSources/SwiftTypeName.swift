@@ -15,11 +15,16 @@ extension String {
     }
     
     /// Characters that cause the next character to be capitalized.
-    internal static let removableCharacters: [UnicodeScalar] = [" ", "_", "-"]
+    internal static let removableCharacters: [Character] = [" ", "_", "-"]
     
     /// Returns whether this causes the next character to be capitalized.
-    internal func isRemovable(_ scalar: UnicodeScalar) -> Bool {
-        return String.removableCharacters.contains(scalar)
+    internal func isRemovable(_ character: Character) -> Bool {
+        return String.removableCharacters.contains(character)
+    }
+    
+    /// Returns whether this string contains any removable characters.
+    internal func containsRemovableCharacters() -> Bool {
+        return (self.first(where: { isRemovable($0) }) != nil)
     }
     
     /// Returns a camelCase version of this string with spaces, dashes and underscores removed.
@@ -28,23 +33,21 @@ extension String {
     /// - Parameter typeName: Capitalizes the beginning of the string if `.type`, 
     ///                       otherwise starts lowercase if `.name`.
     internal func camelCase(_ typeName: SwiftTypeName) -> String {
-        guard self.characters.count > 0 else { return self }
+        guard !self.isEmpty else { return self }
         var newString: String = ""
-        
-        if !isRemovable(self.unicodeScalars.first!) {
-            let first = String(Character(self.unicodeScalars.first!))
+        if !isRemovable(self.first!) {
+            let first = String(self.first!)
             newString.append(typeName == .type ? first.uppercased() : first.lowercased())
         }
         var capitalizeNext = false
-        for scalar in self.unicodeScalars.dropFirst() {
+        for character in self.dropFirst() {
             if capitalizeNext {
-                let uppercaseCharacter = String(Character(scalar)).uppercased()
+                let uppercaseCharacter = String(character).uppercased()
                 newString.append(uppercaseCharacter)
                 capitalizeNext = false
-            } else if isRemovable(scalar) {
+            } else if isRemovable(character) {
                 capitalizeNext = true
             } else {
-                let character = Character(scalar)
                 newString.append(character)
             }
         }

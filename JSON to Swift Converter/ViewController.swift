@@ -3,7 +3,7 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/20/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import Cocoa
@@ -11,7 +11,7 @@ import Cocoa
 extension NSButton {
     
     var isChecked: Bool {
-        return self.state == NSOnState
+        return self.state == .on
     }
     
 }
@@ -20,7 +20,7 @@ extension String {
     
     /// Returns an attributed string with the specified color.
     func attributed(with color: NSColor) -> NSAttributedString {
-        let attributes: [String: Any] = [NSForegroundColorAttributeName: color]
+        let attributes: [NSAttributedStringKey: Any] = [.foregroundColor: color]
         return NSMutableAttributedString(string: self, attributes: attributes)
     }
     
@@ -60,9 +60,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var typeRequired: NSButton!
     
     @IBOutlet weak var addDefaultValue: NSButton!
-    @IBOutlet weak var addKeys: NSButton!
-    @IBOutlet weak var addInit: NSButton!
-    @IBOutlet weak var addDictionary: NSButton!
+    @IBOutlet weak var supportCodable: NSButton!
     
     @IBOutlet weak var version: NSTextField! {
         didSet {
@@ -72,7 +70,7 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var output: NSTextField!
     
-    var appSettings = AppSettings.sharedInstance
+    var appSettings = AppSettings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,46 +82,47 @@ class ViewController: NSViewController {
     /// Update the controls to match the user defaults settings
     func updateControls() {
         let isDeclarationLet = appSettings.declaration == .useLet
-        declarationLet.state = isDeclarationLet ? NSOnState : NSOffState
-        declarationVar.state = isDeclarationLet ? NSOffState : NSOnState
+        declarationLet.state = isDeclarationLet ? .on : .off
+        declarationVar.state = isDeclarationLet ? .off : .on
         
         let typeUnwrapping = appSettings.typeUnwrapping
-        typeExplicit.state = typeUnwrapping == .explicit ? NSOnState : NSOffState
-        typeOptional.state = typeUnwrapping == .optional ? NSOnState : NSOffState
-        typeRequired.state = typeUnwrapping == .required ? NSOnState : NSOffState
+        typeExplicit.state = typeUnwrapping == .explicit ? .on : .off
+        typeOptional.state = typeUnwrapping == .optional ? .on : .off
+        typeRequired.state = typeUnwrapping == .required ? .on : .off
         
-        addDefaultValue.state = appSettings.addDefaultValue ? NSOnState : NSOffState
-        addKeys.state = appSettings.addKeys ? NSOnState : NSOffState
-        addInit.state = appSettings.addInit ? NSOnState : NSOffState
-        addDictionary.state = appSettings.addDictionary ? NSOnState : NSOffState
+        addDefaultValue.state = appSettings.addDefaultValue ? .on : .off
+        supportCodable.state = appSettings.supportCodable ? .on : .off
     }
     
     /// Update the output text view to reflect the current settings
     func updateOutput() {
-        addInit.isEnabled = addKeys.state == NSOnState
-        addDictionary.isEnabled = addKeys.state == NSOnState
-        
         let declaration = appSettings.declaration == .useLet ? "let" : "var"
         let typeUnwrapping = appSettings.typeUnwrapping == .optional ? "?" : appSettings.typeUnwrapping == .required ? "!" : ""
         
         let outputData = [["user name", "String", "\"\""], ["age", "Int", "0"]]
         let outputString = NSMutableAttributedString(string: "")
         outputString.beginEditing()
-        let lineIndent = LineIndent(useTabsForIndentation: false, indentationWidth: 4, level: 1)
+        let lineIndent = LineIndent(useTabs: false, indentationWidth: 4, level: 1)
         
-        // Add the keys if set, scoped if set
-        if appSettings.addKeys {
-            outputString.append("struct".attributedKeywordColor)
-            outputString.append(" Key {\n".attributed)
-            for item in outputData {
-                outputString.append("\(lineIndent)".attributed)
-                outputString.append("static let".attributedKeywordColor)
-                outputString.append(" \(item[0].swiftName) = ".attributed)
+        // Add the coding keys (required for example because swiftName doesn't match JSON name)
+        outputString.append("private enum".attributedKeywordColor)
+        outputString.append(" CodingKeys: ".attributed)
+        outputString.append("String".attributedKeywordColor)
+        outputString.append(", ".attributed)
+        outputString.append("CodingKey".attributedKeywordColor)
+        outputString.append(" {\n".attributed)
+        for item in outputData {
+            outputString.append("\(lineIndent)".attributed)
+            outputString.append("case ".attributedKeywordColor)
+            outputString.append(" \(item[0].swiftName)".attributed)
+            if item[0] != item[0].swiftName {
+                outputString.append(" = ".attributed)
                 outputString.append("\"\(item[0])\"".attributedStringColor)
-                outputString.append("\n".attributed)
             }
-            outputString.append("}\n\n".attributed)
+            outputString.append("\n".attributed)
         }
+        outputString.append("}\n\n".attributed)
+
         
         // Add the declarations
         for item in outputData {
@@ -142,27 +141,25 @@ class ViewController: NSViewController {
         
         outputString.append("\n".attributed)
 
-        if appSettings.addKeys {
+        if appSettings.supportCodable {
             // Add the init method.
-            if appSettings.addInit {
+            do {//if appSettings.addInit {
                 outputString.append("init".attributedKeywordColor)
-                outputString.append("?(from dictionary: [".attributed)
-                outputString.append("String".attributedKeywordColor)
-                outputString.append(": ".attributed)
-                outputString.append("Any".attributedKeywordColor)
-                outputString.append("]) { ... }\n".attributed)
+                outputString.append("(from decoder: ".attributed)
+                outputString.append("Decoder".attributedKeywordColor)
+                outputString.append(") ".attributed)
+                outputString.append("throws".attributedKeywordColor)
+                outputString.append(" { ... }\n".attributed)
             }
      
             // Add the dictionary variable.
-            if appSettings.addDictionary {
-                outputString.append("var".attributedKeywordColor)
-                outputString.append(" dictionary: [".attributed)
-                outputString.append("String".attributedKeywordColor)
-                outputString.append(": ".attributed)
-                outputString.append("Any".attributedKeywordColor)
-                outputString.append("] { ".attributed)
-                outputString.append("return".attributedKeywordColor)
-                outputString.append(" ... }".attributed)
+            do {//if appSettings.addDictionary {
+                outputString.append("func encode".attributedKeywordColor)
+                outputString.append("(to encoder: ".attributed)
+                outputString.append("Encoder".attributedKeywordColor)
+                outputString.append(") ".attributed)
+                outputString.append("throws".attributedKeywordColor)
+                outputString.append(" { ... }".attributed)
             }
         }
         
@@ -187,18 +184,8 @@ class ViewController: NSViewController {
         updateOutput()
     }
 
-    @IBAction func changeAddKeys(_ sender: NSButton) {
-        appSettings.addKeys = sender.isChecked
-        updateOutput()
-    }
-
-    @IBAction func changeAddInit(_ sender: NSButton) {
-        appSettings.addInit = sender.isChecked
-        updateOutput()
-    }
-    
-    @IBAction func changeAddDictionary(_ sender: NSButton) {
-        appSettings.addDictionary = sender.isChecked
+    @IBAction func changeSupportCodable(_ sender: NSButton) {
+        appSettings.supportCodable = sender.isChecked
         updateOutput()
     }
     

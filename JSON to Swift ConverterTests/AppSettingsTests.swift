@@ -3,7 +3,7 @@
 //  JSON to Swift Converter
 //
 //  Created by Brian Arnold on 2/25/17.
-//  Copyright © 2017 Brian Arnold. All rights reserved.
+//  Copyright © 2018 Brian Arnold. All rights reserved.
 //
 
 import XCTest
@@ -12,9 +12,9 @@ import XCTest
 class AppSettingsTests: XCTestCase {
     
     func testSharedInstance() {
-        /// Only use AppSettings.sharedInstance once here for code coverage,
+        /// Use AppSettings default constructor once here for code coverage,
         /// because it will access the shared UserDefaults which may change between tests.
-        let _ = AppSettings.sharedInstance
+        let _ = AppSettings()
     }
     
     func testDefaultSettings() {
@@ -22,10 +22,8 @@ class AppSettingsTests: XCTestCase {
         
         XCTAssertEqual(appSettings.declaration, .useLet, "default for declaration")
         XCTAssertEqual(appSettings.typeUnwrapping, .required, "default for type unwrapping")
-        XCTAssertTrue(appSettings.addKeys, "default for add keys")
+        XCTAssertTrue(appSettings.supportCodable, "default for support Codable")
         XCTAssertFalse(appSettings.addDefaultValue, "default for add default value")
-        XCTAssertFalse(appSettings.addInit, "default for add init")
-        XCTAssertFalse(appSettings.addDictionary, "default for add dictionary")
     }
 
     func testChangingSettings() {
@@ -40,16 +38,11 @@ class AppSettingsTests: XCTestCase {
         appSettings.typeUnwrapping = .optional
         XCTAssertEqual(appSettings.typeUnwrapping, .optional, "type unwrapping")
 
-        appSettings.addKeys = false
-        XCTAssertFalse(appSettings.addKeys, "add keys")
+        appSettings.supportCodable = false
+        XCTAssertFalse(appSettings.supportCodable, "support Codable")
         
         appSettings.addDefaultValue = true
         XCTAssertTrue(appSettings.addDefaultValue, "add default value")
-        
-        appSettings.addInit = true
-        XCTAssertTrue(appSettings.addInit, "add init")
-        appSettings.addDictionary = true
-        XCTAssertTrue(appSettings.addDictionary, "add dictionary")
     }
     
     func testTypeUnwrappingStringConvertible() {

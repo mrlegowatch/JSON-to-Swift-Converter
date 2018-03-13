@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14105" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14105"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -114,6 +114,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="570" width="650" height="360"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="FJF-03-aJk"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -229,7 +232,7 @@
                                     </subviews>
                                 </view>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2E-hv-i3H">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h2E-hv-i3H">
                                 <rect key="frame" x="16" y="21" width="81" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version 1.0.0" id="1g5-DL-NOf">
@@ -262,17 +265,6 @@ let age: Int</string>
                                 <color key="borderColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </box>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzW-Eu-VeN">
-                                <rect key="frame" x="18" y="175" width="150" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Add Key declarations" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9J6-C7-ah3">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="changeAddKeys:" target="XfG-lQ-9wD" id="koB-Bl-uzB"/>
-                                </connections>
-                            </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-rE-gU1">
                                 <rect key="frame" x="18" y="206" width="135" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -284,38 +276,25 @@ let age: Int</string>
                                     <action selector="changeDefaultValue:" target="XfG-lQ-9wD" id="xaK-tu-aLj"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e3c-Zm-L64">
-                                <rect key="frame" x="37" y="155" width="110" height="18"/>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BjK-ZN-6fy">
+                                <rect key="frame" x="18" y="172" width="125" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Add init(from:)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="3OZ-bK-QH8">
+                                <buttonCell key="cell" type="check" title="Support Codable" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QZQ-Rn-Vj3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="changeAddInit:" target="XfG-lQ-9wD" id="g0a-wI-Ryk"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mk9-Oq-f3l">
-                                <rect key="frame" x="37" y="135" width="166" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Add var dictionary {get}" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rQS-Sq-s0g">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="changeAddDictionary:" target="XfG-lQ-9wD" id="m88-gx-pmS"/>
+                                    <action selector="changeSupportCodable:" target="XfG-lQ-9wD" id="iED-jS-cv7"/>
                                 </connections>
                             </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="addDefaultValue" destination="Jab-rE-gU1" id="2C9-na-f8Z"/>
-                        <outlet property="addDictionary" destination="mk9-Oq-f3l" id="1FI-lc-RME"/>
-                        <outlet property="addInit" destination="e3c-Zm-L64" id="NbN-zY-bBy"/>
-                        <outlet property="addKeys" destination="uzW-Eu-VeN" id="2iT-ro-J5R"/>
                         <outlet property="declarationLet" destination="IMU-O8-Zda" id="xpd-MN-PXA"/>
                         <outlet property="declarationVar" destination="XDu-AA-bQH" id="z5m-dn-Wkv"/>
                         <outlet property="output" destination="jxf-fb-jgn" id="ZQo-cT-fFM"/>
+                        <outlet property="supportCodable" destination="BjK-ZN-6fy" id="KhR-Er-Lv0"/>
                         <outlet property="typeExplicit" destination="kw1-8k-yZx" id="INF-6Y-jb5"/>
                         <outlet property="typeOptional" destination="YbW-I0-aYL" id="HCv-aV-IvY"/>
                         <outlet property="typeRequired" destination="x9l-Fa-pGB" id="HPM-6z-7Mj"/>
